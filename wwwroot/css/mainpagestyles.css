@@ -1,0 +1,327 @@
+/* _content/Karverket/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+/*
+.logo{
+    margin-top: 50px;
+    margin-left:480px;
+    width: 100px;
+    height: 10px;
+
+}
+*/
+
+
+/* Styling for login box fortsetter nedenfor*/
+/*                                          */
+/*
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #dfdfdf;
+}
+
+.login-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 440px;
+    height: 480px;
+    padding: 30px;
+    
+}
+
+.login-header {
+    text-align: center;
+    margin: 20px 0 40px 0;
+}
+
+    .login-header header {
+        color: #333;
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+.input-box .input-field {
+    width: 100%;
+    height: 60px;
+    font-size: 17px;
+    padding: 0 25px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 5px 10px 1px rgba(0,0,0, 0.05);
+    outline: none;
+    transition: .3s;
+}
+
+::placeholder {
+    font-weight: 500;
+    color: #222;
+}
+
+.input-field:focus {
+    width: 105%;
+}
+
+.forgot {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+}
+
+#check {
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+section a {
+    color: #555;
+}
+
+.input-submit {
+    position: relative;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 60px;
+    background: #222;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.input-submit label {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    color: #fff;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #000;
+    transform: scale(1.05,1);
+}
+
+.sign-up-link {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+    .sign-up-link a {
+        color: #000;
+        font-weight: 600;
+    }
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #dfdfdf;
+}
+
+.login-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 440px;
+    height: 480px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.login-header {
+    text-align: center;
+    margin: 20px 0 40px 0;
+}
+
+    .login-header header {
+        color: #333;
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+.input-box .input-field {
+    width: 100%;
+    height: 30px
+    font-size: 17px;
+    padding: 0 25px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 5px 10px 1px rgba(0,0,0, 0.05);
+    outline: none;
+    transition: .3s;
+}
+
+.input-field:focus {
+    width: 105%;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+::placeholder {
+    font-weight: 500;
+    color: #222;
+}
+
+.forgot {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+}
+
+#check {
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #555;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+.input-submit {
+    position: relative;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 60px;
+    background: #222;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.input-submit label {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #000;
+    transform: scale(1.05);
+}
+
+.sign-up-link {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+    .sign-up-link a {
+        color: #000;
+        font-weight: 600;
+    }
+
+/* Media Query for Tablets and Smaller Screens */
+@media (max-width: 768px) {
+    .login-box {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+        margin-left:480px;
+    }
+
+    .input-field {
+        font-size: 15px;
+    }
+
+    .login-header header {
+        font-size: 24px;
+    }
+
+    .submit-btn {
+        height: 50px;
+    }
+
+    .sign-up-link {
+        font-size: 14px;
+    }
+}
+
+/* Media Query for Mobile Screens */
+@media (max-width: 480px) {
+    .login-box {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .input-field {
+        font-size: 14px;
+    }
+
+    .login-header header {
+        font-size: 20px;
+    }
+
+    .submit-btn {
+        height: 45px;
+    }
+
+    .sign-up-link {
+        font-size: 13px;
+    }
+}
