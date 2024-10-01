@@ -1,14 +1,27 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "";
 }
 
 <<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title></title>
-        </head>
+        <title>Sign Up</title>
+    </head>
     <body>
+        <div class="su-header">
+            <h1>Registrer bruker</h1>
+        </div>
+        <div class="su-input-box">
+            <input type="text" class="input-field" placeholder="Fornavn" autocomplete="off" required/>
+        </div>
+        <div class="su-input-box">
+            <input type="text" class="input-field" placeholder="Etternavn" autocomplete="off" required />
+        </div>
+        <div class="su-input-box">
+            <input type="password" class="input-field" placeholder="Passord" autocomplete="off" required />
+        </div>
+        <div class="su-input-box">
+            <input type="text" class="input-field" placeholder="E-post" autocomplete="off" required />
+        </div>
 
     </body>
 </html>

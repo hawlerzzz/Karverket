@@ -21,6 +21,12 @@ namespace Karverket.Controllers
         public IActionResult Privacy()
         {
             return View();
+
+        }
+
+        public IActionResult Signup()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -28,5 +34,6 @@ namespace Karverket.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,10 +7,6 @@
     <UserSecretsId>da5c67e5-ded0-4ef6-9211-725785700177</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="Views\Home\Index1.cshtml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.3" />
