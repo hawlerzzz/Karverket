@@ -3,27 +3,37 @@
 }
 
 <<html xmlns="http://www.w3.org/1999/xhtml">
-<link href="~/css/mainpagestyles.css" rel="stylesheet" />
+<link href="~/css/mainpagestyles.css" rel="stylesheet"/>
     <head>
         <title>Sign Up</title>
     </head>
+
     <body>
+        <div class="logo">
+            <img src="~/css/kartverket-logo-1.jpg" alt="" />
+        </div>
         <div class="su-header">
             <h1>Registrer bruker</h1>
         </div>
 
-        <div class="su-input-box">
-            <input type="text" class="input-field" placeholder="Fornavn" autocomplete="off" required/>
-        </div>
-        <div class="su-input-box">
-            <input type="text" class="input-field" placeholder="Etternavn" autocomplete="off" required />
-        </div>
-        <div class="su-input-box">
-            <input type="password" class="input-field" placeholder="Passord" autocomplete="off" required />
-        </div>
-        <div class="su-input-box">
-            <input type="text" class="input-field" placeholder="E-post" autocomplete="off" required />
-        </div>
+    <div class="su-input-box">
+        <input type="text" class="su-input-field" placeholder="Fornavn" autocomplete="off" required />
+    </div>
+    <div class="su-input-box">
+        <input type="text" class="su-input-field" placeholder="Etternavn" autocomplete="off" required />
+    </div>
+    <div class="su-input-box">
+        <input type="password" class="su-input-field" placeholder="Passord" autocomplete="off" required />
+    </div>
+    <div class="su-input-box">
+        <input type="text" class="su-input-field" placeholder="E-post" autocomplete="off" required />
+    </div>
+
+    <div class="su-opprettbruker">
+        <p><a href="@Url.Action("#")">Opprett ny bruker</a></p>
+    </div>
+
+
 
     </body>
 </html>

@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
+/*  CSS-styling er gjort gjennomm denne filen. En hver sides styling ligger her, klassenavn har lett gjenkjennelige navn.
+    Hovedsaklig er disse gitt utifra hvilken side de tilhører, dette er for å skape en type system.
+    Et eksempel på klassenavn er "su-header", de to første bokstavene er fra hvilke view den er fra, dvs "su(signup.cshtml)".
+    Videre kommer "header", som kun beskriver hvor på signup.cshtml dette er et element.
+*/
+
 
 .logo {
     display:flex;
@@ -141,10 +147,58 @@ section a {
         font-weight: 600;
     }
 
+
+/*SignUp.cshtml sin styling av ulike elementer ligger nedenfor*/
+
+.logo {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+    margin-right: 50px;
+}
+
+
 .su-header{
     text-align:center;
-    font-size:50px;
-    margin:revert;
-    padding-bottom:100px;
+    font-size:20px;
+    padding-bottom:20px;
 
 }
+
+.su-input-box {
+    margin-bottom: 15px;
+    display:flex;
+    justify-content:center;
+}
+
+.su-input-field {
+    width: 50%;
+    height: 60px;
+    font-size: 17px;
+    padding: 0 25px;
+    border-radius: 10px;
+    border: none;
+    background-color: lightgrey;
+    box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: 0.3s;
+    justify-content:center;
+    display:flex;
+}
+
+    .su-input-field:focus {
+        background-color: lightgrey; /*  */
+    }
+
+.su-opprettbruker{
+    justify-content:center;
+    display:flex;
+    color:blue;
+    margin-bottom:100px;
+    
+}
+    .su-opprettbruker a {
+    color: blue;
+    font-weight: 600;
+    }
