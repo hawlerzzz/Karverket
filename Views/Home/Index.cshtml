@@ -1,10 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Logge inn";
 }
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Kartverket</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+<div class="container">
     <div class="logo">
         <img src="~/css/kartverket-logo-1.jpg" alt="kartverket logo">
     </div>
@@ -36,15 +34,10 @@
     <div class="sign-up-link">
         <p><a href="@Url.Action("SignUp", "Home")">Opprett ny bruker</a></p>
     </div>
-    </head>
 
-    <body>
-        <div class="midlertidig">
-        <a class="nav-link" asp-controller="Home" asp-action="CorrectMap">Map-midlertidigknapp</a>
-        </div>
-
-    </body>
-</html>
+    <div class="midlertidig"> <!-- midlertidlig knapp -->
+        <a class="nav-link" asp-controller="Home" asp-action="Kart">Map-midlertidigknapp</a>
+    </div>
 
 <div class="text-center flex flex-col items-center">
     
@@ -53,4 +46,5 @@
         <a href="https://learn.microsoft.com/aspnet/core" class="text-blue-500 underline hover:text-blue-700">    
         </a>.
     </p>
+</div>
 </div>

@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Register Change";
+}
+
+<!-- Map container with defined height -->
+<div id="map" style="height: 500px; width: 100vw;">
+
+
+
+    <div class="space-y-2 cursor-pointer" style="position: absolute; bottom: 20px; right: 20px; z-index: 500;">
+        <div id="position" class="p-2 bg-blue-600 rounded-md text-center">
+            <img class="ml-[3px]" src="/zoom.svg" />
+        </div>
+
+        <div class="bg-blue-600 rounded-md">
+            <div id="plus" class="p-2 text-center">
+                <img src="/plus.svg" />
+            </div>
+            <hr class="text-white" />
+            <div id="minus" class="p-2  text-center">
+                <img src="/minus.svg" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<br />
+
+<form asp-action="RegisterAreaChange" method="post">
+
+    <input type="hidden" id="geoJsonInput" name="geoJson" />
+    <div>
+        <label for="description">Kommentar:</label>
+        <textarea id="description" name="Description" class="form-control"></textarea>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    <!-- These frour lines are important to keep -->
+    <!-- 1. Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- 2. Leaflet Draw CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+
+    <!-- 3. Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- 4. Leaflet Draw JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+    <script>
+
+        document.getElementById("position").addEventListener("click", userPosition)
+        document.getElementById("plus").addEventListener("click", zoomIn)
+        document.getElementById("minus").addEventListener("click", zoomOut)
+
+
+
+
+        var map = L.map('map', { zoomControl: false, doubleClickZoom: false }).setView([51.505, -0.09], 13);  // Center the map on a location
+        // map.zoomControl = false;
+
+        // Add a base map layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Initialize the feature group that will hold the drawn shapes
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+
+        function userPosition(e) {
+
+            map.locate({
+                setView: true,
+            })
+        }
+
+        function zoomIn(e) {
+
+            map.zoomIn()
+        }
+
+        function zoomOut(e) {
+
+            map.zoomOut()
+        }
+
+
+
+
+
+
+        // Creates the drawing control on the left hand side
+        // The drawing control enables drawing of markers, polygons, and polylines
+        var drawControl = new L.Control.Draw({
+            draw: {
+                polygon: false,
+                polyline: true,
+                marker: true,
+                circle: false,  //Disable circle drawing
+                rectangle: false
+            },
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
+        map.addControl(drawControl);
+
+        // Event handling when a layer is drawn on the map
+        map.on(L.Draw.Event.CREATED, function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+
+            drawnItems.addLayer(layer);
+
+            // Get the GeoJSON representation of the drawn layer
+            var geoJsonData = layer.toGeoJSON();
+            var geoJsonString = JSON.stringify(geoJsonData);
+
+            // Set the GeoJSON string into the hidden input field in the form
+            document.getElementById('geoJsonInput').value = geoJsonString;
+        });
+
+    </script>
+}
