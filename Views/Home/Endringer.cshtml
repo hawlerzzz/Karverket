@@ -1,0 +1,26 @@
+﻿@model List<Karverket.Models.AreaChange>
+@{
+    ViewData["Title"] = "Overview";
+}
+
+<h2>Innmeldinger</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>GeoJSON</th>
+            <th>Kommentar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var change in Model)
+        {
+            <tr>
+                <td>@change.Id</td>
+                <td>@change.GeoJson</td>
+                <td>@change.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
