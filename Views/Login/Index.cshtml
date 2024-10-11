@@ -9,14 +9,13 @@
     <div class="login-header">
 
         <header>
-
         </header>
 
     </div>
 
     <div>@ViewData["error"]</div>
 
-    <form asp-action="login" method="post">
+    <form asp-action="Login" asp-controller="Home" method="post">
         <div class="input-box">
             <input name="email" type="text" class="input-field" placeholder="E-post" autocomplete="off" required>
         </div>
@@ -37,19 +36,20 @@
         </div>
     </form>
     <div class="sign-up-link">
-        <p><a href="@Url.Action("SignUp", "Home")">Opprett ny bruker</a></p>
+        <p><a href='@Url.Action("index", "signup")'>Opprett ny bruker</a></p>
     </div>
 
-    <div class="midlertidig"> <!-- midlertidlig knapp -->
+    <div class="midlertidig">
+        <!-- midlertidlig knapp -->
         <!-- <a class="nav-link" asp-controller="Home" asp-action="Kart">Map-midlertidigknapp</a> -->
     </div>
 
-<div class="text-center flex flex-col items-center">
-    
-    <h1 class="text-4xl font-bold mt-4"></h1>
-    <p class="mt-2"> 
-        <a href="https://learn.microsoft.com/aspnet/core" class="text-blue-500 underline hover:text-blue-700">    
-        </a>.
-    </p>
-</div>
+    <div class="text-center flex flex-col items-center">
+
+        <h1 class="text-4xl font-bold mt-4"></h1>
+        <p class="mt-2">
+            <a href="https://learn.microsoft.com/aspnet/core" class="text-blue-500 underline hover:text-blue-700">
+            </a>.
+        </p>
+    </div>
 </div>
