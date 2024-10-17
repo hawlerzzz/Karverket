@@ -211,14 +211,15 @@ section a {
     width: 100%;
 }
 
-.logout-link{
-    margin-left:20px;
-}
-.users-link{
-    margin-left:20px;
+.logout-link {
+    margin-left: 20px;
 }
 
-.profile-link{
-    margin-left:auto;
-    padding:0px;
+.users-link {
+    margin-left: 20px;
+}
+
+.profile-link {
+    margin-left: auto;
+    padding: 0px;
 }
