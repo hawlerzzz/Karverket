@@ -202,3 +202,23 @@ section a {
     color: blue;
     font-weight: 600;
     }
+
+.navbar {
+    padding: 10px 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.logout-link{
+    margin-left:20px;
+}
+.users-link{
+    margin-left:20px;
+}
+
+.profile-link{
+    margin-left:auto;
+    padding:0px;
+}
