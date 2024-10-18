@@ -4,16 +4,16 @@
 
 <div class="container">
 
-        <div class="logo">
-            <img src="~/css/kartverket-logo-1.jpg" alt="" />
-        </div>
-        <div class="su-header">
-            <h1>Registrer bruker</h1>
-        </div>
+    <div class="logo">
+        <img src="~/css/kartverket-logo-1.jpg" alt="" />
+    </div>
+    <div class="su-header">
+        <h1>Registrer bruker</h1>
+    </div>
 
-        <div>@ViewData["error"]</div>
+    <div>@ViewData["error"]</div>
 
-    <form asp-action="CreateAccount" method="post">
+    <form asp-action="CreateAccount" asp-controller="Home" method="post">
 
         <div class="su-input-box">
             <input name="name" type="text" class="su-input-field" placeholder="Fornavn" autocomplete="off" required />
@@ -32,7 +32,7 @@
     </form>
 
     <div class="su-opprettbruker">
-        <p><a href="@Url.Action("#")">Opprett ny bruker</a></p>
+        <p><a href="@Url.Action("index", "login")">Har du bruker? Loggin in istedenfor</a></p>
     </div>
 
 </div>

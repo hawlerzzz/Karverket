@@ -202,3 +202,124 @@ section a {
     color: blue;
     font-weight: 600;
     }
+
+/*
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    margin-right: auto; /* Ensures links align to the left 
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
+
+        .nav-links a:hover {
+            color: #008000; /* Green color on hover 
+        }
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+
+    .profile-link i {
+        width: 25px;
+        height: 25px;
+        background-color: #000;
+        border-radius: 50%;
+        margin-right: 5px;
+        display: inline-block;
+        position: relative;
+    }
+
+        .profile-link i::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #000;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+  */
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Space between logo and other sections */
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.nav-logo {
+    height: 50px; /* Adjust the height to fit your design */
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    margin-left: 20px; /* Adds some space between the logo and the links */
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
+
+        .nav-links a:hover {
+            color: #008000; /* Green color on hover */
+        }
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+
+    .profile-link i {
+        width: 25px;
+        height: 25px;
+        background-color: #000;
+        border-radius: 50%;
+        margin-right: 5px;
+        display: inline-block;
+        position: relative;
+    }
+
+        .profile-link i::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #000;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
