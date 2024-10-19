@@ -23,11 +23,11 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: white;
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    min-height: 100vh;*/
+/*    background: white;*/
 }
 
 .login-box {
@@ -116,7 +116,7 @@ section a {
     border-radius: 10px;
     cursor: pointer;
     transition: .3s;
-    transform:scale(0.9);
+/*    transform:scale(0.9);*/
     
 }
 
