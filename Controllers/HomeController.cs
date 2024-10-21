@@ -202,6 +202,17 @@ namespace Karverket.Controllers
         {
             return Json(currentUser);
         }
+        public IActionResult Inbox()
+        {
+            // Logikk for å hente innboksdata her (om nødvendig)
+            return View();
+        }
+        public IActionResult Innmeldinger()
+        {
+            // Logikk for å hente innmeldingsdata her (om nødvendig)
+            return View();
+        }
+
 
     }
 }
