@@ -1,7 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Karverket.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configure EF
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("MySQL_Connection"),
+    new MySqlServerVersion(new Version(11, 5, 2)))
+);
 
 var app = builder.Build();
 
