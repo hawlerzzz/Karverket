@@ -2,7 +2,7 @@
     ViewData["Title"] = "";
 }
 
-<div class="container">
+<div class="container mx-auto mt-24">
 
     <div class="logo">
         <img src="~/css/kartverket-logo-1.jpg" alt="" />
@@ -13,25 +13,25 @@
 
     <div>@ViewData["error"]</div>
 
-    <form asp-action="CreateAccount" asp-controller="Home" method="post">
+    <form class="max-w-screen-md mx-auto" asp-action="CreateAccount" asp-controller="Home" method="post">
 
         <div class="su-input-box">
-            <input name="name" type="text" class="su-input-field" placeholder="Fornavn" autocomplete="off" required />
+            <input name="name" type="text" class="su-input-field w-full" placeholder="Fornavn" autocomplete="off" required />
         </div>
         <div class="su-input-box">
-            <input name="surname" type="text" class="su-input-field" placeholder="Etternavn" autocomplete="off" required />
+            <input name="surname" type="text" class="su-input-field w-full" placeholder="Etternavn" autocomplete="off" required />
         </div>
         <div class="su-input-box">
-            <input name="password" type="password" class="su-input-field" placeholder="Passord" autocomplete="off" required />
+            <input name="password" type="password" class="su-input-field w-full" placeholder="Passord" autocomplete="off" required />
         </div>
         <div class="su-input-box">
-            <input name="email" type="text" class="su-input-field" placeholder="E-post" autocomplete="off" required />
+            <input name="email" type="text" class="su-input-field w-full" placeholder="E-post" autocomplete="off" required />
         </div>
         <!--<button type="submit">Sumbit</button>-->
         <button class="submit-btn" id="submit">Registrer</button>
     </form>
 
-    <div class="su-opprettbruker">
+    <div class="su-opprettbruker mt-4">
         <p><a href="@Url.Action("index", "login")">Har du bruker? Loggin in istedenfor</a></p>
     </div>
 
