@@ -2,7 +2,7 @@
     ViewData["Title"] = "Logge inn";
 }
 
-<div class="container">
+<div class="container mx-auto mt-24">
     <div class="logo">
         <img src="~/css/kartverket-logo-1.jpg" alt="kartverket logo">
     </div>
@@ -15,7 +15,7 @@
 
     <div>@ViewData["error"]</div>
 
-    <form asp-action="Login" asp-controller="Home" method="post">
+    <form class="max-w-screen-md mx-auto" asp-action="Login" asp-controller="Home" method="post">
         <div class="input-box">
             <input name="email" type="text" class="input-field" placeholder="E-post" autocomplete="off" required>
         </div>
@@ -52,4 +52,5 @@
             </a>.
         </p>
     </div>
+    <!--<div class="w-96 h-[1000px] bg-red-500">h</div>-->
 </div>
