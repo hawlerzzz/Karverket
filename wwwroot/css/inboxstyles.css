@@ -1,0 +1,62 @@
+
+
+
+.inboxSide {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tilbake-link {
+    display: block;
+    margin-bottom: 10px;
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 14px; /* Større font */
+}
+
+.inbox-overskrift {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.innmeldingStatus {
+    font-size: 20px; /* skrift for overskriftene "ubesvarte" eller "tidligere" meldinger  */
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.message-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 100%; /* Full bredde på boksen */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* svak skygge */
+    transition: transform 0.2s ease-in-out; /* hover-effekt */
+}.arrow {
+    font-size: 20px;  /* Gjør pilen litt mindre */
+    color: #333;
+    align-self: center;  /* Juster pilen slik at den er i linje med teksten */
+}
+
+.yellow-box {
+    background-color: #fff9c4; /* Lys gul */
+}
+
+.green-box {
+    background-color: #c8e6c9; /* Lys grønn */
+}
+
+.red-box {
+    background-color: #ffcdd2; /* Lys rød */
+}
+
+/* avstanden mellom "Ubesvarte innmeldinger" og "Tidligere innmeldinger" */
+#innmeldingsstatus {
+    margin-top: 30px;
+}
