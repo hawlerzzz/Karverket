@@ -15,7 +15,9 @@ namespace Karverket.Controllers
         private static User? currentUser;
 
         // private method that creates user 
-        private User CreateUser(string name, string surname, string email, string password) /* Skal ligge i signup controller n�r databasen er klar */
+        private User
+            CreateUser(string name, string surname, string email,
+                string password) /* Skal ligge i signup controller n�r databasen er klar */
         {
 
             // check that the email does not exist
@@ -89,6 +91,7 @@ namespace Karverket.Controllers
             {
                 return RedirectToAction("index", "login");
             }
+
             return View("kart");
         }
 
@@ -118,7 +121,7 @@ namespace Karverket.Controllers
             }
             catch
             {
-                return RedirectToAction("index", "login",new { error = "feil e-post eller passord" });
+                return RedirectToAction("index", "login", new { error = "feil e-post eller passord" });
             }
 
             return RedirectToAction("index");
@@ -136,7 +139,9 @@ namespace Karverket.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAccount(string name, string surname, string email, string password) // makes a a new user. skal ligge i signup controller n�r DB er klar
+        public IActionResult
+            CreateAccount(string name, string surname, string email,
+                string password) // makes a a new user. skal ligge i signup controller n�r DB er klar
         {
             try
             {
@@ -173,6 +178,7 @@ namespace Karverket.Controllers
 
                 return View("CorrectionOverview", positions);
             }
+
             return View();
         }
 
@@ -183,7 +189,7 @@ namespace Karverket.Controllers
         }
 
 
-        public IActionResult Logout() 
+        public IActionResult Logout()
         {
             LogUserOut();
             return RedirectToAction("index", "login");
@@ -198,21 +204,32 @@ namespace Karverket.Controllers
         {
             return Json(currentUser);
         }
+
         public IActionResult Inbox()
         {
             // Logikk for � hente innboksdata her (om n�dvendig)
             return View();
         }
+
         public IActionResult Innmeldinger()
         {
             // Logikk for � hente innmeldingsdata her (om n�dvendig)
             return View();
         }
-        public IActionResult MineInnmeldinger()
-        {
-            // Logikk for � hente innmeldingsdata her (om n�dvendig)
-            return View();
-        } 
 
+        public IActionResult MineInnmeldinger(string color)
+        {
+            // Hvis ingen farge er angitt, sett standard til "yellow"
+            if (string.IsNullOrEmpty(color))
+            {
+                color = "yellow";
+            }
+
+            // Legg farge til ViewBag for å bruke den i viewet
+            ViewBag.Color = color;
+            return View();
+        }
     }
+
+
 }

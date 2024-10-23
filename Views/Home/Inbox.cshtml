@@ -1,6 +1,8 @@
 @{
-ViewData["Title"] = "Inbox";
+    ViewData["Title"] = "Inbox";
 }
+
+<!-- Navbar -->
 <nav class="navbar">
     <div class="nav-logo">
         <a asp-action="Home">
@@ -20,41 +22,43 @@ ViewData["Title"] = "Inbox";
     </div>
 </nav>
 
-
+<!--Inbox siden -->
 <div class="inboxSide">
-    <a href="http://localhost:5094/Home" class="tilbake-link">Gå tilbake</a>
+    <a href="/Home" class="tilbake-link">Gå tilbake</a>
 
     <h1 class="inbox-overskrift">Inbox</h1>
 
     <section id="innmeldingsStatus">
-        <h2 class="innmeldingStatus"> Ubesvarte innmeldinger</h2>
+        <h2 class="innmeldingStatus">Ubesvarte innmeldinger</h2>
     </section>
 
     <section id="message-box yellow-box">
         <div class="message-box yellow-box">
-            <span><a href="/Home/MineInnmeldinger" class="linkTilInnmelding">Mine innmeldinger</a></span>
+            <!-- Sender fargen "yellow" via query string -->
+            <span><a href="/Home/MineInnmeldinger?color=yellow" class="linkTilInnmelding">Mine innmeldinger</a></span>
             <span class="arrow">➔</span>
         </div>
     </section>
 
-    <section id="innmeldingsstatus">
-        <h2 class="innmeldingStatus"> Tidligere innmeldinger</h2>
+    <section id="innmeldingsStatus">
+        <h2 class="innmeldingStatus">Tidligere innmeldinger</h2>
     </section>
 
     <section id="message-box green-box">
         <div class="message-box green-box">
-            <span><a href="/Home/MineInnmeldinger" class="linkTilInnmelding">Mine innmeldinger</a></span>
+            <!-- Sender fargen "green" via query string -->
+            <span><a href="/Home/MineInnmeldinger?color=green" class="linkTilInnmelding">Mine innmeldinger</a></span>
             <span class="arrow">➔</span>
         </div>
     </section>
 
     <section id="message-box red-box">
         <div class="message-box red-box">
-            <span><a href="/Home/MineInnmeldinger" class="linkTilInnmelding">Mine innmeldinger</a></span>
+            <!-- Sender fargen "red" via query string -->
+            <span><a href="/Home/MineInnmeldinger?color=red" class="linkTilInnmelding">Mine innmeldinger</a></span>
             <span class="arrow">➔</span>
         </div>
     </section>
-
 </div>
 
 

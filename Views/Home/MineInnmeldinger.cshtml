@@ -1,6 +1,60 @@
 @{
     ViewData["Title"] = "MineInnmeldinger";
+    var feedbackColor = ViewBag.Color ?? "yellow"; // Standard til "yellow" hvis ingen farge er angitt
 }
 
-<h2>Mine Innmeldinger</h2>
+<!-- navbar-->
+<nav class="navbar">
+    <div class="nav-logo">
+        <a asp-action="Home">
+            <img src="~/css/kartverket-logo-1.jpg" alt="Logo" style="width: 110px; height: auto;">
+        </a>
+    </div>
+    <div class="flex">
+        <div class="nav-links">
+            <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+            <a asp-action="Kart" class="kart-link">Kart</a>
+            <a asp-action="Inbox" class="inbox-link">Inbox</a>
+            <a asp-action="Logout" class="logout-link">Logg ut</a>
+        </div>
+        <div class="profile ml-4">
+            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
+        </div>
+    </div>
+</nav>
 
+<!-- Selve siden -->
+
+<div class="innmelding-container">
+    <a href="/Home/Inbox" class="tilbake-link">Gå tilbake</a>
+
+    <h1 class="innmelding-title">Innmelding</h1>
+
+    <!-- Dynamisk farge brukes her basert på feedbackColor -->
+    <div class="innmelding-tilbakemelding @feedbackColor">
+        <div class="innmelding-header">
+            <span class="icon">&#128100;</span> <!-- Ikon for saksbehandler -->
+            <div class="header-text">
+                <p>Thomas, saksbehandler</p>
+                <p>Hei, jeg jobber med din innmelding</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="innmelding-boks">
+        <div class="innmelding-details">
+            <strong>Type:</strong>
+            <p>Land</p>
+            <strong>Dato:</strong>
+            <p>Datoen når meldingen er sendt</p>
+            <strong>Geografisk område:</strong> 
+            <p>"Koordinat"</p>
+            <strong>Kommentar:</strong>
+            <p>Her skal kommentaren til bruker være.</p>
+        </div>
+        
+        <a href="/Home">
+            <button class="kart-knapp">Tilbake i kartet/Se i kartet</button>
+        </a>
+    </div>
+</div>

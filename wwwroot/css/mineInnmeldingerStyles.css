@@ -1,26 +1,89 @@
-.inbox-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.innmelding-container {
+    max-width: 800px; /* Maks bredde for PC-visning */
+    margin-left: 5%; /* Litt margin fra venstre for å sentrere */
+    padding: 20px; /* Gir luft rundt innholdet */
 }
 
-.inbox-item {
-    border: 1px solid #ccc;
-    padding: 1rem;
-    background-color: #f9f9f9;
+.tilbake-link {
+    display: block; /* Plasserer lenken på egen linje */
+    margin-bottom: 20px; /* Gir luft under lenken */
+    color: #0066cc; /* Farge på lenken */
+    text-decoration: none; /* Fjerner understreking på lenken */
+    font-size: 16px; /* Størrelse på teksten i lenken */
+}
+
+.innmelding-title {
+    font-size: 32px; /* Stor tekst for tittelen */
+    margin-bottom: 30px; /* Luft under tittelen */
+    color: #333; /* Mørk tekstfarge */
+}
+
+.innmelding-boks {
+    padding: 20px; /* Luft inni boksen */
+    border-radius: 8px; /* Runde hjørner */
+    margin-bottom: 20px; /* Avstand mellom boksene */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Svak skygge */
+    background-color: #ffffff; /* Hvit bakgrunn for boks */
+}
+
+.gul-tilbakemelding {
+    background-color: #fff9c4; /* Lys gul bakgrunn for tilbakemelding fra saksbehandler */
+    padding: 10px; /* Luft inne i tilbakemeldingsboksen */
+    border-radius: 8px; /* Runde hjørner */
+    margin-bottom: 15px; /* Avstand mellom tilbakemelding og resten av boksen */
+}
+
+.innmelding-header {
+    display: flex; /* Flexbox for å plassere ikon og tekst på samme linje */
+    align-items: center; /* Vertikal justering av innholdet */
+    margin-bottom: 15px; /* Luft under headeren */
+}
+
+.icon {
+    font-size: 24px; /* Størrelse på ikonet */
+    margin-right: 10px; /* Mellomrom mellom ikon og tekst */
+}
+
+.header-text p {
+    margin: 0; /* Fjerner margin på paragrafene */
+    font-size: 16px; /* Størrelse på teksten i headeren */
+}
+
+.innmelding-details p {
+    margin: 5px 0; /* Litt luft mellom hver detaljlinje */
+    font-size: 16px; /* Standard tekststørrelse for innhold */
+}
+
+.kart-knapp {
+    background-color: #0066cc; /* Blå bakgrunn for knappen */
+    color: white; /* Hvit tekst på knappen */
+    border: none; /* Fjerner kantlinje */
+    padding: 10px 20px; /* Luft inni knappen */
+    border-radius: 4px; /* Runde kanter på knappen */
+    cursor: pointer; /* Håndmarkør når man holder over knappen */
+    font-size: 16px; /* Tekststørrelse for knappen */
+    margin-top: 20px; /* Avstand over knappen */
+}
+
+.kart-knapp:hover {
+    background-color: #005bb5; /* Mørkere blå farge ved hover */
+}
+/* Standard stil for innmelding-tilbakemelding */
+.innmelding-tilbakemelding {
+    padding: 10px;
     border-radius: 8px;
+    margin-bottom: 15px;
 }
 
-.item-header {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+/* Farger for tilbakemeldingene */
+.yellow {
+    background-color: #fff9c4; /* Lys gul bakgrunn */
 }
 
-.item-body p {
-    margin: 0.2rem 0;
+.green {
+    background-color: #c8e6c9; /* Lys grønn bakgrunn */
 }
 
-a {
-    margin-top: 1rem;
-    display: inline-block;
+.red {
+    background-color: #ffcdd2; /* Lys rød bakgrunn */
 }
