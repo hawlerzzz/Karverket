@@ -200,7 +200,7 @@ namespace Karverket.Controllers
 
         public IActionResult Profile()
         {
-            return Json(currentUser);
+            return View(currentUser);
         }
 
     }

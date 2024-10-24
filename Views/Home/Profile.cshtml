@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Karverket.Models.User
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Profil</title>
+        <link rel="stylesheet" href="~/css/mainpagestyles.css" />
+     </head>
+
+
+    <body>
+        <div class="profile-container">
+            <h2>Profil</h2>
+            <div class="profile-info">
+                <p><strong>Fornavn:</strong> <span id="first-name">@Model.Name</span></p>
+                <p><strong>Etternavn:</strong> <span id="last-name">@Model.SurName</span></p>
+                <p><strong>Fylke:</strong> <span id="region">@Model.</span></p>
+                <p><strong>E-post:</strong> <span id="email">@Model.Email</span></p>
+        </div>
+        <div class="profile-picture">
+            <p>Saksbehandler profilbilde</p>
+        </div>
+    </div>
+  
+    </body>
+</html>
