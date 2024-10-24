@@ -1,50 +1,56 @@
 ﻿@{
-    ViewData["Title"] = "Register Change";
+    ViewData["Title"] = "Kart";
 }
 
-<link href="~/css/mainpagestyles.css" rel="stylesheet" />
-
-
-<!--    
-<nav class="navbar">
-    <div class="nav-links">
-        <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
-        <a asp-action="Kart" class="kart-link">Kart</a>
-        <a asp-action="Inbox" class="inbox-link">Inbox</a>
-        <a asp-action="Logout" class="logout-link">Logg ut</a>
-    </div>
-    <div class="profile">
-        <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
-    </div>
-</nav> -->
-
-<nav class="navbar">
-    <div class="nav-logo">
-        <a asp-action="Home">
-            <img src="~/css/kartverket-logo-1.jpg" alt="Logo" style="width: 110px; height: auto;">
-        </a>
-    </div>
-    <div class="flex">
-        <div class="nav-links">
-            <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
-            <a asp-action="Kart" class="kart-link">Kart</a>
-            <a asp-action="Inbox" class="inbox-link">Inbox</a>
-            <a asp-action="Logout" class="logout-link">Logg ut</a>
-        </div>
-        <div class="profile ml-4">
-            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
-        </div>
-     </div>
-</nav>
-
+<!--<div>
+    <a asp-action="Logout">Logg ut</a>
+    <a asp-action="ViewUsers">Users</a>
+    <a asp-action="Profile">Profil</a>
+</div> -->
 
 
 <!-- Map container with defined height -->
-<div id="map" style="height: 500px; width: 100vw;">
+<div id="map" class="h-screen w-screen">
 
+    <div class="" style="position: absolute; bottom: 50px; right: 50%; z-index: 500;">
 
+        <button id="modalButton" class="bg-blue-600 rounded-md px-8 py-3 text-white text-lg">Send</button>
+    
+    </div>
 
-    <div class="space-y-2 cursor-pointer" style="position: absolute; bottom: 20px; right: 20px; z-index: 500;">
+    <div id="modal" class="invisible bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center" style="position: absolute; z-index: 1100;"> <!-- modal -->
+
+        <div class=" w-96 bg-white rounded-md opcaity-100"> <!-- modal content -->
+            <div class="border-b-2 border-gray-200 flex justify-between px-4"> <!-- header -->
+                <div class="flex items-center">
+                    <h4 class="text-lg font-medium">Beskrivelse</h4>
+                </div>
+                <div id="modalCloseButton" class="p-2 my-2 hover:bg-gray-200 rounded-full">
+                    <img src="/x.svg" />
+                </div>
+            </div>
+
+            <div class="p-2 mt-4 text-lg"> <!-- modal body -->
+                <form asp-action="RegisterAreaChange" method="post" class="flex flex-col justify-content-between h-full w-full">
+                    <div>
+                        <input type="hidden" id="geoJsonInput" name="geoJson" />
+                        <label for="tyype" class=" text-lg">Type</label>
+                        <!-- <input name="tyype" class="w-full border-2 p-2 rounded-md my-2 " type="text" placeholder="type"  /> -->
+                        <select name="type" class="w-full border-2 p-2 rounded-md my-2">
+                            <option value="land">Land</option>
+                            <option value="hav">Hav</option>
+                        </select>
+                        <label class="text-lg">Kommentar</label>
+                        <textarea name="Description" class="border-2 my-2 p-2 w-full rounded-md"> </textarea>
+                    </div>
+                    <button class="w-[368px] rounded-md bg-blue-500 p-2 text-center text-white" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="space-y-2 cursor-pointer md-right-[25px]" style="position: absolute; bottom: 50px; right: 50px; z-index: 500;">
         <div id="position" class="p-2 bg-blue-600 rounded-md text-center">
             <img class="ml-[3px]" src="/zoom.svg" />
         </div>
@@ -66,16 +72,16 @@
 
 <br />
 
-<form asp-action="RegisterAreaChange" method="post">
+ <!-- <form asp-action="RegisterAreaChange" method="post">
 
-    <input type="hidden" id="geoJsonInput" name="geoJson" />
-    <div>
-        <label for="description">Kommentar:</label>
-        <textarea id="description" name="Description" class="form-control"></textarea>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+     <input type="hidden" id="geoJsonInput" name="geoJson" />
+     <div>
+         <label for="description">Kommentar:</label>
+         <textarea id="description" name="Description" class="form-control"></textarea>
+     </div>
+     <br />
+     <button type="submit" class="btn btn-primary">Submit</button>
+ </form> -->
 
 @section Scripts {
     <!-- These frour lines are important to keep -->
@@ -100,9 +106,28 @@
         document.getElementById("position").addEventListener("click", userPosition)
         document.getElementById("plus").addEventListener("click", zoomIn)
         document.getElementById("minus").addEventListener("click", zoomOut)
+        document.getElementById("modalButton").addEventListener("click", openModal)
+        document.getElementById("modalCloseButton").addEventListener("click", closeModal)
+        // document.getElementById().addEventListener("input", allowSendcloseModal
+
+        // function allowSend() {
+
+        // }
 
 
 
+        function openModal() {
+
+            // console.log("open modal was clicked!")'
+            if (geoJsonInput.value) {
+                document.getElementById("modal").classList.remove("invisible");
+            }
+        }
+
+
+        function closeModal() {
+            document.getElementById("modal").classList.add("invisible");
+        }
 
         var map = L.map('map', { zoomControl: false, doubleClickZoom: false }).setView([51.505, -0.09], 13);  // Center the map on a location
         // map.zoomControl = false;

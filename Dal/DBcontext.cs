@@ -12,7 +12,8 @@ namespace Karverket.DAL
         }
 
         // DbSet for å representere Product-tabellen i databasen
-        public DbSet<GeoChange> GeoChanges { get; set; }
+        //public DbSet<GeoChange> GeoChanges { get; set; }
+        public DbSet<GeoChange> GeoChanges2 { get; set; }
 
         // Konfigurering av tilkobling til MariaDB-database
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
