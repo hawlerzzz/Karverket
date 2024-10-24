@@ -89,19 +89,20 @@ namespace Karverket.Controllers
         {
             //ViewData["error"] = error;
             //return View();
-            if (currentUser == null)
-            {
-                return RedirectToAction("index", "login");
-            }
+            //if (currentUser == null)
+            //{
+                //return RedirectToAction("index", "login");
+            //}
             return View("kart");
         }
 
         [HttpPost]
-        public IActionResult RegisterAreaChange(string geoJson, string description)
+        public IActionResult RegisterAreaChange(string geoJson, string tyype, string description)
         {
             var newChange = new AreaChange
             {
                 Id = Guid.NewGuid().ToString(),
+                Type = tyype,
                 GeoJson = geoJson,
                 Description = description
             };
