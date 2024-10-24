@@ -34,6 +34,7 @@
                 <form asp-action="RegisterAreaChange" method="post" class="flex flex-col justify-content-between h-full w-full">
                     <div>
                         <input type="hidden" id="geoJsonInput" name="geoJson" />
+                        <input type="hidden" id="fylke" name="fylke" />
                         <label for="tyype" class=" text-lg">Type</label>
                         <!-- <input name="tyype" class="w-full border-2 p-2 rounded-md my-2 " type="text" placeholder="type"  /> -->
                         <select name="type" class="w-full border-2 p-2 rounded-md my-2">
@@ -127,6 +128,7 @@
 
         function closeModal() {
             document.getElementById("modal").classList.add("invisible");
+            getFylke()
         }
 
         var map = L.map('map', { zoomControl: false, doubleClickZoom: false }).setView([51.505, -0.09], 13);  // Center the map on a location
@@ -160,7 +162,30 @@
         }
 
 
+        function getFylke() {
 
+
+            jso = document.getElementById('geoJsonInput').value 
+            jso = JSON.parse(jso)
+            console.log(jso)
+            ost = jso.geometry.coordinates[0]
+            nord = jso.geometry.coordinates[1]
+            console.log("ost", ost)
+            console.log("nord", nord)
+            
+           fetch(`https://api.kartverket.no/kommuneinfo/v1/punkt?nord=${nord}&ost=${ost}&koordsys=4258`)
+           .then ((r) => r.json())
+           .then ((data) => {
+               console.log(data)
+               
+               console.log(i)
+               document.getElementById("fylke").value = data.fylkesnavn
+
+               
+           })
+
+
+        }
 
 
 

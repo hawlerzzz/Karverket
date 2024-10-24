@@ -97,12 +97,13 @@ namespace Karverket.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegisterAreaChange(string geoJson, string tyype, string description)
+        public IActionResult RegisterAreaChange(string geoJson, string type, string fylke, string description)
         {
             var newChange = new AreaChange
             {
                 Id = Guid.NewGuid().ToString(),
-                Type = tyype,
+                Type = type,
+                Fylke = fylke,
                 GeoJson = geoJson,
                 Description = description
             };
