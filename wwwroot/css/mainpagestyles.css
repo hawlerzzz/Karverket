@@ -323,3 +323,31 @@ section a {
             left: 50%;
             transform: translateX(-50%);
         }
+
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+    .profile-info p {
+        margin: 10px 0;
+    }
+
+.profile-picture {
+    flex: 0 0 200px;
+    height: 200px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
