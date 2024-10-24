@@ -12,16 +12,14 @@ namespace Karverket.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context; 
         private static List<AreaChange> changesList = new List<AreaChange>();
-
         private static List<PositionModel> positions = new List<PositionModel>();
         private static List<User> users = new List<User>();
         private static User? currentUser;
 
-
-
-
         // private method that creates user 
-        private User CreateUser(string name, string surname, string email, string password) /* Skal ligge i signup controller når databasen er klar */
+        private User
+            CreateUser(string name, string surname, string email,
+                string password) /* Skal ligge i signup controller nï¿½r databasen er klar */
         {
 
             // check that the email does not exist
@@ -49,7 +47,7 @@ namespace Karverket.Controllers
             return User1;
         }
 
-        private User LogUserIn(string email, string password) /* Skal ligge i login controller når databasen er klar */
+        private User LogUserIn(string email, string password) /* Skal ligge i login controller nï¿½r databasen er klar */
         {
             // Get from db a user with this email
             User? user = users.Find(u => u.Email == email);
@@ -85,7 +83,11 @@ namespace Karverket.Controllers
         public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
+<<<<<<< HEAD
             _context = context;
+=======
+
+>>>>>>> 9ff37fb9046f4660ddb141fa4d955218f163c353
         }
 
         public IActionResult Index()
@@ -96,15 +98,20 @@ namespace Karverket.Controllers
             {
                 return RedirectToAction("index", "login");
             }
+            //if (currentUser == null)
+            //{
+                //return RedirectToAction("index", "login");
+            //}
             return View("kart");
         }
 
         [HttpPost]
-        public IActionResult RegisterAreaChange(string geoJson, string description)
+        public IActionResult RegisterAreaChange(string geoJson, string tyype, string description)
         {
             var newChange = new AreaChange
             {
                 Id = Guid.NewGuid().ToString(),
+                Type = tyype,
                 GeoJson = geoJson,
                 Description = description
             };
@@ -116,7 +123,7 @@ namespace Karverket.Controllers
             return RedirectToAction("endringer");
         }
 
-        [HttpPost] /* Skal ligge i login controller når databasen er klar */
+        [HttpPost] /* Skal ligge i login controller nï¿½r databasen er klar */
         public IActionResult Login(string email, string password)
         {
             try
@@ -125,7 +132,7 @@ namespace Karverket.Controllers
             }
             catch
             {
-                return RedirectToAction("index", "login",new { error = "feil e-post eller passord" });
+                return RedirectToAction("index", "login", new { error = "feil e-post eller passord" });
             }
 
             return RedirectToAction("index");
@@ -143,7 +150,9 @@ namespace Karverket.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAccount(string name, string surname, string email, string password) // makes a a new user. skal ligge i signup controller når DB er klar
+        public IActionResult
+            CreateAccount(string name, string surname, string email,
+                string password) // makes a a new user. skal ligge i signup controller nï¿½r DB er klar
         {
             try
             {
@@ -180,6 +189,7 @@ namespace Karverket.Controllers
 
                 return View("CorrectionOverview", positions);
             }
+
             return View();
         }
 
@@ -190,7 +200,7 @@ namespace Karverket.Controllers
         }
 
 
-        public IActionResult Logout() 
+        public IActionResult Logout()
         {
             LogUserOut();
             return RedirectToAction("index", "login");
@@ -203,8 +213,34 @@ namespace Karverket.Controllers
 
         public IActionResult Profile()
         {
-            return Json(currentUser);
+            return View(currentUser);
         }
 
+        public IActionResult Inbox()
+        {
+            // Logikk for ï¿½ hente innboksdata her (om nï¿½dvendig)
+            return View();
+        }
+
+        public IActionResult Innmeldinger()
+        {
+            // Logikk for ï¿½ hente innmeldingsdata her (om nï¿½dvendig)
+            return View();
+        }
+
+        public IActionResult MineInnmeldinger(string color)
+        {
+            // Hvis ingen farge er angitt, sett standard til "yellow"
+            if (string.IsNullOrEmpty(color))
+            {
+                color = "yellow";
+            }
+
+            // Legg farge til ViewBag for Ã¥ bruke den i viewet
+            ViewBag.Color = color;
+            return View();
+        }
     }
+
+
 }

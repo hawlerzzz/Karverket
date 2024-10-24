@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Inbox";
+}
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-logo">
+        <a asp-action="Home">
+            <img src="~/css/kartverket-logo-1.jpg" alt="Logo" style="width: 110px; height: auto;">
+        </a>
+    </div>
+    <div class="flex">
+        <div class="nav-links">
+            <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+            <a asp-action="Kart" class="kart-link">Kart</a>
+            <a asp-action="Inbox" class="inbox-link">Inbox</a>
+            <a asp-action="Logout" class="logout-link">Logg ut</a>
+        </div>
+        <div class="profile ml-4">
+            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
+        </div>
+    </div>
+</nav>
+
+<!--Inbox siden -->
+<div class="inboxSide">
+    <a href="/Home" class="tilbake-link">Gå tilbake</a>
+
+    <h1 class="inbox-overskrift">Inbox</h1>
+
+    <section id="innmeldingsStatus">
+        <h2 class="innmeldingStatus">Ubesvarte innmeldinger</h2>
+    </section>
+
+    <section id="message-box yellow-box">
+        <div class="message-box yellow-box">
+            <!-- Sender fargen "yellow" via query string -->
+            <span><a href="/Home/MineInnmeldinger?color=yellow" class="linkTilInnmelding">Mine innmeldinger</a></span>
+            <span class="arrow">➔</span>
+        </div>
+    </section>
+
+    <section id="innmeldingsStatus">
+        <h2 class="innmeldingStatus">Tidligere innmeldinger</h2>
+    </section>
+
+    <section id="message-box green-box">
+        <div class="message-box green-box">
+            <!-- Sender fargen "green" via query string -->
+            <span><a href="/Home/MineInnmeldinger?color=green" class="linkTilInnmelding">Mine innmeldinger</a></span>
+            <span class="arrow">➔</span>
+        </div>
+    </section>
+
+    <section id="message-box red-box">
+        <div class="message-box red-box">
+            <!-- Sender fargen "red" via query string -->
+            <span><a href="/Home/MineInnmeldinger?color=red" class="linkTilInnmelding">Mine innmeldinger</a></span>
+            <span class="arrow">➔</span>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+
