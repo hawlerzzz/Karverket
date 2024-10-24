@@ -1,3 +1,4 @@
+using Karverket.DAL;
 using Karverket.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ namespace Karverket.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _context; 
         private static List<AreaChange> changesList = new List<AreaChange>();
 
         private static List<PositionModel> positions = new List<PositionModel>();
@@ -42,7 +44,8 @@ namespace Karverket.Controllers
                 Email = email,
                 Password = password
             };
-            users.Add(User1);
+            _context.Users.Add(User1);
+            _context.SaveChanges();
             return User1;
         }
 
@@ -79,10 +82,10 @@ namespace Karverket.Controllers
         }
 
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
-            
+            _context = context;
         }
 
         public IActionResult Index()
@@ -151,7 +154,7 @@ namespace Karverket.Controllers
                 return RedirectToAction("index", "signup", new { error = "Epost er allerede brukt!" });
             }
 
-            LogUserIn(email, password);
+            // LogUserIn(email, password);
 
             return RedirectToAction("index");
         }
