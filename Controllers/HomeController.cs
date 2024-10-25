@@ -83,11 +83,8 @@ namespace Karverket.Controllers
         public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
-<<<<<<< HEAD
             _context = context;
-=======
 
->>>>>>> 9ff37fb9046f4660ddb141fa4d955218f163c353
         }
 
         public IActionResult Index()
