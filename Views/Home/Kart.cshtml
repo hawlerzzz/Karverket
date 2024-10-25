@@ -123,6 +123,7 @@
             if (geoJsonInput.value) {
                 document.getElementById("modal").classList.remove("invisible");
             }
+            getFylke() 
         }
 
 
@@ -178,7 +179,6 @@
            .then ((data) => {
                console.log(data)
                
-               console.log(i)
                document.getElementById("fylke").value = data.fylkesnavn
 
                
