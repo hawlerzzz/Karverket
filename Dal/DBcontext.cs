@@ -15,6 +15,9 @@ namespace Karverket.DAL
         //public DbSet<GeoChange> GeoChanges { get; set; }
         public DbSet<GeoChange> GeoChanges2 { get; set; }
 
+        // DbSet for å represntere Users-tabellen som inkludere user objekter i databasen
+        public DbSet<User> Users { get; set; }
+
         // Konfigurering av tilkobling til MariaDB-database
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
