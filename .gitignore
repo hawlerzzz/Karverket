@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 package-lock.json
+
+./wwwroot/css/styles.css
