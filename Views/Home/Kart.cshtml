@@ -9,8 +9,28 @@
 </div> -->
 
 
+<nav class="navbar ">
+    <div class="nav-logo">
+        <a asp-action="Home">
+            <img width="100" src="~/css/kartverket-logo-1.jpg" alt="Logo">
+        </a>
+    </div>
+    <div class="flex justify-between">
+        <div class="nav-links">
+            <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+            <a asp-action="Kart" class="kart-link">Kart</a>
+            <a asp-action="Inbox" class="inbox-link">Inbox</a>
+            <a asp-action="Logout" class="logout-link">Logg ut</a>
+        </div>
+        <div class="profile mx-4 ">
+            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
+        </div>
+    </div>
+</nav>
+
+
 <!-- Map container with defined height -->
-<div id="map" class="h-screen w-screen">
+<div id="map" style="height: 90vh" class=" w-screen ">
 
     <div class="" style="position: absolute; bottom: 50px; right: 50%; z-index: 500;">
 
@@ -132,7 +152,7 @@
             getFylke()
         }
 
-        var map = L.map('map', { zoomControl: false, doubleClickZoom: false }).setView([51.505, -0.09], 13);  // Center the map on a location
+        var map = L.map('map', { zoomControl: false, doubleClickZoom: false }).setView([65.50, 20.38], 5);  // Center the map on a location
         // map.zoomControl = false;
 
         // Add a base map layer
