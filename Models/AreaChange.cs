@@ -7,7 +7,7 @@
         public string Fylke { get; set; }
         public string GeoJson { get; set; }
         public string Description { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
     }
 
 

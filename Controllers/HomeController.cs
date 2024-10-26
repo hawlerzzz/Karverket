@@ -91,10 +91,10 @@ namespace Karverket.Controllers
         {
             //ViewData["error"] = error;
             //return View();
-            if (currentUser == null)
-            {
-                return RedirectToAction("index", "login");
-            }
+            //if (currentUser == null)
+            //{
+            //    return RedirectToAction("index", "login");
+            //}
             //if (currentUser == null)
             //{
                 //return RedirectToAction("index", "login");
@@ -110,6 +110,7 @@ namespace Karverket.Controllers
                 Id = Guid.NewGuid().ToString(),
                 Type = type,
                 Fylke = fylke,
+                Date = DateTime.Today,
                 GeoJson = geoJson,
                 Description = description
             };
