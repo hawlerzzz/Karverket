@@ -97,8 +97,22 @@ namespace Karverket.Controllers
             //}
             //if (currentUser == null)
             //{
-                //return RedirectToAction("index", "login");
+            //return RedirectToAction("index", "login");
             //}
+
+            var newChange = new AreaChange
+            {
+                Id = Guid.NewGuid().ToString(),
+                Type = "land",
+                Fylke = "fylke",
+                Date = DateTime.Today,
+                GeoJson = "geoJson",
+                Description = "description"
+            };
+
+            //Save the change in the static in-memory list
+            //changesList.Add(newChange);
+            //changesList.Add(newChange);
             return View("kart");
         }
 
@@ -218,7 +232,7 @@ namespace Karverket.Controllers
         public IActionResult Inbox()
         {
             // Logikk for � hente innboksdata her (om n�dvendig)
-            return View();
+            return View(changesList);
         }
 
         public IActionResult Innmeldinger()
@@ -227,7 +241,7 @@ namespace Karverket.Controllers
             return View();
         }
 
-        public IActionResult MineInnmeldinger(string color)
+        public IActionResult MineInnmeldinger(string id, string color)
         {
             // Hvis ingen farge er angitt, sett standard til "yellow"
             if (string.IsNullOrEmpty(color))
@@ -236,8 +250,11 @@ namespace Karverket.Controllers
             }
 
             // Legg farge til ViewBag for å bruke den i viewet
+            ViewBag.Id = id;
             ViewBag.Color = color;
-            return View();
+            Console.WriteLine("Id is: from home: ", id);
+            Console.WriteLine("col is: from home: ", color);
+            return View(changesList);
         }
     }
 
