@@ -1,3 +1,4 @@
+@model List<Karverket.Models.AreaChange>
 @{
     ViewData["Title"] = "Inbox";
 }
@@ -32,13 +33,26 @@
         <h2 class="innmeldingStatus">Ubesvarte innmeldinger</h2>
     </section>
 
-    <section id="message-box yellow-box">
+    <!-- <section id="message-box yellow-box"
         <div class="message-box yellow-box">
-            <!-- Sender fargen "yellow" via query string -->
+            <!-- Sender fargen "yellow" via query string --
             <span><a href="/Home/MineInnmeldinger?color=yellow" class="linkTilInnmelding">Mine innmeldinger</a></span>
             <span class="arrow">➔</span>
         </div>
-    </section>
+         <div id="message-box yellow-box flex-col"> -->
+        @foreach (var i in Model)
+        {
+            @if (i.Status == "Pending")
+            {
+                <div class="message-box yellow-box">
+                    <!-- Sender fargen "yellow" via query string -->
+                    <span><a href="/Home/MineInnmeldinger?id=@i.Id&color=yellow" class="linkTilInnmelding">@i.Id</a></span>
+                    <span class="arrow">➔</span>
+                </div>
+            }
+        }
+    <!-- </div>
+    </section> -->
 
     <section id="innmeldingsStatus">
         <h2 class="innmeldingStatus">Tidligere innmeldinger</h2>

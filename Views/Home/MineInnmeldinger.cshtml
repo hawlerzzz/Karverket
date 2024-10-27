@@ -1,6 +1,9 @@
+@model List<Karverket.Models.AreaChange>
 @{
     ViewData["Title"] = "MineInnmeldinger";
     var feedbackColor = ViewBag.Color ?? "yellow"; // Standard til "yellow" hvis ingen farge er angitt
+    Console.WriteLine("id is: ", ViewBag.Id);
+    var innmelding = Model.FirstOrDefault(i => i.Id == ViewBag.id);
 }
 
 <!-- navbar-->
@@ -29,7 +32,6 @@
     <a href="/Home/Inbox" class="tilbake-link">Gå tilbake</a>
 
     <h1 class="innmelding-title">Innmelding</h1>
-
     <!-- Dynamisk farge brukes her basert på feedbackColor -->
     <div class="innmelding-tilbakemelding @feedbackColor">
         <div class="innmelding-header">
@@ -44,13 +46,13 @@
     <div class="innmelding-boks">
         <div class="innmelding-details">
             <strong>Type:</strong>
-            <p>Land</p>
+            <p>@innmelding.Type</p>
             <strong>Dato:</strong>
-            <p>Datoen når meldingen er sendt</p>
+            <p>@innmelding.Date.ToString("dd/MM/yyyy")</p>
             <strong>Geografisk område:</strong> 
             <p>"Koordinat"</p>
             <strong>Kommentar:</strong>
-            <p>Her skal kommentaren til bruker være.</p>
+            <p>@innmelding.Description</p>
         </div>
         
         <a href="/Home">
