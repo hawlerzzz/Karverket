@@ -36,7 +36,6 @@ namespace Karverket.Controllers
 
             var User1 = new User
             {
-                Id = 1, // should be auto increment in DB
                 Name = name,
                 SurName = surname,
                 Email = email,
@@ -50,7 +49,7 @@ namespace Karverket.Controllers
         private User LogUserIn(string email, string password) /* Skal ligge i login controller n�r databasen er klar */
         {
             // Get from db a user with this email
-            User? user = users.Find(u => u.Email == email);
+            User? user = _context.Users.SingleOrDefault(u => u.Email == email);
 
             if (user == null)
             {
@@ -83,8 +82,13 @@ namespace Karverket.Controllers
         public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
+<<<<<<< Updated upstream
             _context = context;
 
+=======
+
+            _context = context;
+>>>>>>> Stashed changes
         }
 
         public IActionResult Index()

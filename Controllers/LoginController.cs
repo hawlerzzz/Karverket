@@ -4,10 +4,6 @@ namespace Karverket.Controllers
 {
     public class LoginController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    return Json("login");
-        //}
         [HttpGet]
         public IActionResult Index(string error)
         {
