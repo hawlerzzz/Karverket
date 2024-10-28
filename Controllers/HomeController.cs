@@ -87,16 +87,12 @@ namespace Karverket.Controllers
 
         public IActionResult Index()
         {
-            //ViewData["error"] = error;
-            //return View();
-            //if (currentUser == null)
-            //{
-            //    return RedirectToAction("index", "login");
-            //}
-            //if (currentUser == null)
-            //{
-            //return RedirectToAction("index", "login");
-            //}
+            
+            if (currentUser == null)
+            {
+                return RedirectToAction("index", "login");
+            }
+            
 
             var newChange = new AreaChange
             {
