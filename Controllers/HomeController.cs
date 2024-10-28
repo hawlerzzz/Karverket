@@ -82,13 +82,7 @@ namespace Karverket.Controllers
         public HomeController(ILogger<HomeController> logger, AppDbContext context)
         {
             _logger = logger;
-<<<<<<< Updated upstream
             _context = context;
-
-=======
-
-            _context = context;
->>>>>>> Stashed changes
         }
 
         public IActionResult Index()
