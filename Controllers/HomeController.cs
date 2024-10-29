@@ -123,8 +123,10 @@ namespace Karverket.Controllers
                 Description = description
             };
 
-            //Save the change in the static in-memory list
-            changesList.Add(newChange);
+            
+            _context.Innmeldinger.Add(newChange);
+            _context.SaveChanges();
+
 
             // Redirect to the overview of changes
             return RedirectToAction("endringer");
@@ -226,7 +228,8 @@ namespace Karverket.Controllers
         public IActionResult Inbox()
         {
             // Logikk for � hente innboksdata her (om n�dvendig)
-            return View(changesList);
+            var innmeldinger = _context.Innmeldinger.ToList();
+            return View(innmeldinger);
         }
 
         public IActionResult Innmeldinger()
@@ -237,6 +240,9 @@ namespace Karverket.Controllers
 
         public IActionResult MineInnmeldinger(string id, string color)
         {
+
+            var innmeldinger = _context.Innmeldinger.ToList();
+
             // Hvis ingen farge er angitt, sett standard til "yellow"
             if (string.IsNullOrEmpty(color))
             {
@@ -248,7 +254,7 @@ namespace Karverket.Controllers
             ViewBag.Color = color;
             Console.WriteLine("Id is: from home: ", id);
             Console.WriteLine("col is: from home: ", color);
-            return View(changesList);
+            return View(innmeldinger);
         }
     }
 
