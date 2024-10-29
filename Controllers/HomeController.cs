@@ -36,7 +36,6 @@ namespace Karverket.Controllers
 
             var User1 = new User
             {
-                Id = 1, // should be auto increment in DB
                 Name = name,
                 SurName = surname,
                 Email = email,
@@ -50,7 +49,7 @@ namespace Karverket.Controllers
         private User LogUserIn(string email, string password) /* Skal ligge i login controller n�r databasen er klar */
         {
             // Get from db a user with this email
-            User? user = users.Find(u => u.Email == email);
+            User? user = _context.Users.SingleOrDefault(u => u.Email == email);
 
             if (user == null)
             {
@@ -88,32 +87,46 @@ namespace Karverket.Controllers
 
         public IActionResult Index()
         {
-            //ViewData["error"] = error;
-            //return View();
+            
             if (currentUser == null)
             {
                 return RedirectToAction("index", "login");
             }
-            //if (currentUser == null)
-            //{
-                //return RedirectToAction("index", "login");
-            //}
+            
+
+            var newChange = new AreaChange
+            {
+                Id = Guid.NewGuid().ToString(),
+                Type = "land",
+                Fylke = "fylke",
+                Date = DateTime.Today,
+                GeoJson = "geoJson",
+                Description = "description"
+            };
+
+            //Save the change in the static in-memory list
+            //changesList.Add(newChange);
+            //changesList.Add(newChange);
             return View("kart");
         }
 
         [HttpPost]
-        public IActionResult RegisterAreaChange(string geoJson, string tyype, string description)
+        public IActionResult RegisterAreaChange(string geoJson, string type, string fylke, string description)
         {
             var newChange = new AreaChange
             {
                 Id = Guid.NewGuid().ToString(),
-                Type = tyype,
+                Type = type,
+                Fylke = fylke,
+                Date = DateTime.Today,
                 GeoJson = geoJson,
                 Description = description
             };
 
-            //Save the change in the static in-memory list
-            changesList.Add(newChange);
+            
+            _context.Innmeldinger.Add(newChange);
+            _context.SaveChanges();
+
 
             // Redirect to the overview of changes
             return RedirectToAction("endringer");
@@ -215,7 +228,8 @@ namespace Karverket.Controllers
         public IActionResult Inbox()
         {
             // Logikk for � hente innboksdata her (om n�dvendig)
-            return View();
+            var innmeldinger = _context.Innmeldinger.ToList();
+            return View(innmeldinger);
         }
 
         public IActionResult Innmeldinger()
@@ -224,8 +238,11 @@ namespace Karverket.Controllers
             return View();
         }
 
-        public IActionResult MineInnmeldinger(string color)
+        public IActionResult MineInnmeldinger(string id, string color)
         {
+
+            var innmeldinger = _context.Innmeldinger.ToList();
+
             // Hvis ingen farge er angitt, sett standard til "yellow"
             if (string.IsNullOrEmpty(color))
             {
@@ -233,8 +250,11 @@ namespace Karverket.Controllers
             }
 
             // Legg farge til ViewBag for å bruke den i viewet
+            ViewBag.Id = id;
             ViewBag.Color = color;
-            return View();
+            Console.WriteLine("Id is: from home: ", id);
+            Console.WriteLine("col is: from home: ", color);
+            return View(innmeldinger);
         }
     }
 

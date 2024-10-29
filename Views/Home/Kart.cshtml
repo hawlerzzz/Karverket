@@ -9,8 +9,28 @@
 </div> -->
 
 
+<nav class="navbar ">
+    <div class="nav-logo">
+        <a href="/">
+            <img width="100" src="~/css/kartverket-logo-1.jpg" alt="Logo">
+        </a>
+    </div>
+    <div class="flex justify-between">
+        <div class="nav-links">
+            <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+            <a href="/" class="kart-link">Kart</a>
+            <a asp-action="Inbox" class="inbox-link">Inbox</a>
+            <a asp-action="Logout" class="logout-link">Logg ut</a>
+        </div>
+        <div class="profile mx-4 ">
+            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
+        </div>
+    </div>
+</nav>
+
+
 <!-- Map container with defined height -->
-<div id="map" class="h-screen w-screen">
+<div id="map" style="height: 90vh" class=" w-screen ">
 
     <div class="" style="position: absolute; bottom: 50px; right: 50%; z-index: 500;">
 
@@ -34,6 +54,7 @@
                 <form asp-action="RegisterAreaChange" method="post" class="flex flex-col justify-content-between h-full w-full">
                     <div>
                         <input type="hidden" id="geoJsonInput" name="geoJson" />
+                        <input type="hidden" id="fylke" name="fylke" />
                         <label for="tyype" class=" text-lg">Type</label>
                         <!-- <input name="tyype" class="w-full border-2 p-2 rounded-md my-2 " type="text" placeholder="type"  /> -->
                         <select name="type" class="w-full border-2 p-2 rounded-md my-2">
@@ -122,14 +143,16 @@
             if (geoJsonInput.value) {
                 document.getElementById("modal").classList.remove("invisible");
             }
+            getFylke() 
         }
 
 
         function closeModal() {
             document.getElementById("modal").classList.add("invisible");
+            getFylke()
         }
 
-        var map = L.map('map', { zoomControl: false, doubleClickZoom: false }).setView([51.505, -0.09], 13);  // Center the map on a location
+        var map = L.map('map', { zoomControl: false, doubleClickZoom: false }).setView([65.50, 20.38], 5);  // Center the map on a location
         // map.zoomControl = false;
 
         // Add a base map layer
@@ -160,7 +183,29 @@
         }
 
 
+        function getFylke() {
 
+
+            jso = document.getElementById('geoJsonInput').value 
+            jso = JSON.parse(jso)
+            console.log(jso)
+            ost = jso.geometry.coordinates[0]
+            nord = jso.geometry.coordinates[1]
+            console.log("ost", ost)
+            console.log("nord", nord)
+            
+           fetch(`https://api.kartverket.no/kommuneinfo/v1/punkt?nord=${nord}&ost=${ost}&koordsys=4258`)
+           .then ((r) => r.json())
+           .then ((data) => {
+               console.log(data)
+               
+               document.getElementById("fylke").value = data.fylkesnavn
+
+               
+           })
+
+
+        }
 
 
 
