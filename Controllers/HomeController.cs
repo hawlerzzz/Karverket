@@ -10,16 +10,18 @@ namespace Karverket.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly AppDbContext _context; 
+        private readonly AppDbContext _context;
         private static List<AreaChange> changesList = new List<AreaChange>();
         private static List<PositionModel> positions = new List<PositionModel>();
         private static List<User> users = new List<User>();
         private static User? currentUser;
+        private static Boolean? isPrioritisedUser = false;
+        private static Boolean? isInternalUser = false;
 
         // private method that creates user 
         private User
             CreateUser(string name, string surname, string email,
-                string password) /* Skal ligge i signup controller n�r databasen er klar */
+                string password) /* Skal ligge i signup controller n r databasen er klar */
         {
 
             // check that the email does not exist
@@ -46,7 +48,7 @@ namespace Karverket.Controllers
             return User1;
         }
 
-        private User LogUserIn(string email, string password) /* Skal ligge i login controller n�r databasen er klar */
+        private User LogUserIn(string email, string password) /* Skal ligge i login controller n r databasen er klar */
         {
             // Get from db a user with this email
             User? user = _context.Users.SingleOrDefault(u => u.Email == email);
@@ -62,6 +64,23 @@ namespace Karverket.Controllers
             {
                 Console.WriteLine($"passwords don't match  {password}");
                 throw new WrongPassword(password);
+            }
+
+            if (email.EndsWith("@kartverket.no", StringComparison.OrdinalIgnoreCase))
+            {
+                isInternalUser = true;
+            }
+            if (email.EndsWith("@politi.no", StringComparison.OrdinalIgnoreCase))
+            {
+                isPrioritisedUser = true;
+            }
+            if (email.EndsWith("@brannvesen.no", StringComparison.OrdinalIgnoreCase))
+            {
+                isPrioritisedUser = true;
+            }
+            if (email.EndsWith("@ambulanse.no", StringComparison.OrdinalIgnoreCase))
+            {
+                isPrioritisedUser = true;
             }
 
             // set the current user to this user
@@ -87,12 +106,12 @@ namespace Karverket.Controllers
 
         public IActionResult Index()
         {
-            
+
             if (currentUser == null)
             {
                 return RedirectToAction("index", "login");
             }
-            
+
 
             var newChange = new AreaChange
             {
@@ -107,6 +126,8 @@ namespace Karverket.Controllers
             //Save the change in the static in-memory list
             //changesList.Add(newChange);
             //changesList.Add(newChange);
+            ViewBag.isPrioritisedUser = isPrioritisedUser;
+            ViewBag.isInternalUser = isInternalUser;
             return View("kart");
         }
 
@@ -123,7 +144,7 @@ namespace Karverket.Controllers
                 Description = description
             };
 
-            
+
             _context.Innmeldinger.Add(newChange);
             _context.SaveChanges();
 
@@ -132,7 +153,7 @@ namespace Karverket.Controllers
             return RedirectToAction("endringer");
         }
 
-        [HttpPost] /* Skal ligge i login controller n�r databasen er klar */
+        [HttpPost] /* Skal ligge i login controller n r databasen er klar */
         public IActionResult Login(string email, string password)
         {
             try
@@ -161,7 +182,7 @@ namespace Karverket.Controllers
         [HttpPost]
         public IActionResult
             CreateAccount(string name, string surname, string email,
-                string password) // makes a a new user. skal ligge i signup controller n�r DB er klar
+                string password) // makes a a new user. skal ligge i signup controller n r DB er klar
         {
             try
             {
@@ -227,14 +248,14 @@ namespace Karverket.Controllers
 
         public IActionResult Inbox()
         {
-            // Logikk for � hente innboksdata her (om n�dvendig)
+            // Logikk for   hente innboksdata her (om n dvendig)
             var innmeldinger = _context.Innmeldinger.ToList();
             return View(innmeldinger);
         }
 
         public IActionResult Innmeldinger()
         {
-            // Logikk for � hente innmeldingsdata her (om n�dvendig)
+            // Logikk for   hente innmeldingsdata her (om n dvendig)
             return View();
         }
 
