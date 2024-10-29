@@ -9,7 +9,15 @@ builder.Services.AddControllersWithViews();
 // Configure EF
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("MySQL_Connection"),
-    new MySqlServerVersion(new Version(11, 5, 2)))
+
+    new MySqlServerVersion(new Version(11, 5, 2)),
+    mySqlOptions => mySqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5, // Number of retry attempts
+            maxRetryDelay: TimeSpan.FromSeconds(10), // Delay between retries
+            errorNumbersToAdd: null // Specific SQL error numbers to consider for retries, or null for all transient errors
+        )
+
+    )
 );
 
 var app = builder.Build();
