@@ -128,8 +128,6 @@ namespace Karverket.Controllers
             //changesList.Add(newChange);
             ViewBag.isPrioritisedUser = isPrioritisedUser;
             ViewBag.isInternalUser = isInternalUser;
-            // ViewBag.Geojson = "{ 'type':'Feature','properties':{ },'geometry':{ 'type':'Point','coordinates':[13.359375, 66.633257]} }";
-            ViewBag.Geojson = "{ \"type\": \"Feature\", \"properties\": { }, \"geometry\": { \"type\": \"Point\", \"coordinates\": [13.359375, 66.633257] } }";
             return View("kart");
         }
 
