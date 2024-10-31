@@ -10,16 +10,18 @@ namespace Karverket.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly AppDbContext _context; 
+        private readonly AppDbContext _context;
         private static List<AreaChange> changesList = new List<AreaChange>();
         private static List<PositionModel> positions = new List<PositionModel>();
         private static List<User> users = new List<User>();
         private static User? currentUser;
+        private static bool isPrioritisedUser = false;
+        private static bool isInternalUser = false;
 
         // private method that creates user 
         private User
             CreateUser(string name, string surname, string email,
-                string password) /* Skal ligge i signup controller n�r databasen er klar */
+                string password) /* Skal ligge i signup controller n r databasen er klar */
         {
 
             // check that the email does not exist
@@ -46,7 +48,7 @@ namespace Karverket.Controllers
             return User1;
         }
 
-        private User LogUserIn(string email, string password) /* Skal ligge i login controller n�r databasen er klar */
+        private User LogUserIn(string email, string password) /* Skal ligge i login controller n r databasen er klar */
         {
             // Get from db a user with this email
             User? user = _context.Users.SingleOrDefault(u => u.Email == email);
@@ -62,6 +64,23 @@ namespace Karverket.Controllers
             {
                 Console.WriteLine($"passwords don't match  {password}");
                 throw new WrongPassword(password);
+            }
+
+            if (email.EndsWith("@kartverket.no", StringComparison.OrdinalIgnoreCase))
+            {
+                isInternalUser = true;
+            }
+            if (email.EndsWith("@politi.no", StringComparison.OrdinalIgnoreCase))
+            {
+                isPrioritisedUser = true;
+            }
+            if (email.EndsWith("@brannvesen.no", StringComparison.OrdinalIgnoreCase))
+            {
+                isPrioritisedUser = true;
+            }
+            if (email.EndsWith("@ambulanse.no", StringComparison.OrdinalIgnoreCase))
+            {
+                isPrioritisedUser = true;
             }
 
             // set the current user to this user
@@ -87,12 +106,12 @@ namespace Karverket.Controllers
 
         public IActionResult Index()
         {
-            
+
             if (currentUser == null)
             {
                 return RedirectToAction("index", "login");
             }
-            
+
 
             var newChange = new AreaChange
             {
@@ -107,32 +126,36 @@ namespace Karverket.Controllers
             //Save the change in the static in-memory list
             //changesList.Add(newChange);
             //changesList.Add(newChange);
+            ViewBag.isPrioritisedUser = isPrioritisedUser;
+            ViewBag.isInternalUser = isInternalUser;
             return View("kart");
         }
 
         [HttpPost]
         public IActionResult RegisterAreaChange(string geoJson, string type, string fylke, string description)
         {
-            var newChange = new AreaChange
+            var newChange = new Innmelding
             {
-                Id = Guid.NewGuid().ToString(),
+                //Id = Guid.NewGuid().ToString(),
                 Type = type,
                 Fylke = fylke,
                 Date = DateTime.Today,
                 GeoJson = geoJson,
-                Description = description
+                Description = description,
+                UserId = currentUser.Id,
+                Prioritised = isPrioritisedUser,
             };
 
-            
-            _context.Innmeldinger.Add(newChange);
+
+            _context.Innmeldinger1.Add(newChange);
             _context.SaveChanges();
 
 
             // Redirect to the overview of changes
-            return RedirectToAction("endringer");
+            return RedirectToAction("inbox");
         }
 
-        [HttpPost] /* Skal ligge i login controller n�r databasen er klar */
+        [HttpPost] /* Skal ligge i login controller n r databasen er klar */
         public IActionResult Login(string email, string password)
         {
             try
@@ -161,7 +184,7 @@ namespace Karverket.Controllers
         [HttpPost]
         public IActionResult
             CreateAccount(string name, string surname, string email,
-                string password) // makes a a new user. skal ligge i signup controller n�r DB er klar
+                string password) // makes a a new user. skal ligge i signup controller n r DB er klar
         {
             try
             {
@@ -227,21 +250,26 @@ namespace Karverket.Controllers
 
         public IActionResult Inbox()
         {
-            // Logikk for � hente innboksdata her (om n�dvendig)
-            var innmeldinger = _context.Innmeldinger.ToList();
+            // Logikk for   hente innboksdata her (om n dvendig)
+            //var innmeldinger = _context.Innmeldinger1.ToList();
+            var innmeldinger = _context.Innmeldinger1
+            .Where(i => i.UserId == currentUser.Id)
+            .ToList();
+            ViewBag.isPrioritisedUser = isPrioritisedUser;
+            ViewBag.isInternalUser = isInternalUser;
             return View(innmeldinger);
         }
 
         public IActionResult Innmeldinger()
         {
-            // Logikk for � hente innmeldingsdata her (om n�dvendig)
+            // Logikk for   hente innmeldingsdata her (om n dvendig)
             return View();
         }
 
         public IActionResult MineInnmeldinger(string id, string color)
         {
 
-            var innmeldinger = _context.Innmeldinger.ToList();
+            var innmeldinger = _context.Innmeldinger1.ToList();
 
             // Hvis ingen farge er angitt, sett standard til "yellow"
             if (string.IsNullOrEmpty(color))

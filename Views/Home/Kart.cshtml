@@ -17,7 +17,11 @@
     </div>
     <div class="flex justify-between">
         <div class="nav-links">
-            <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+
+            @if (ViewBag.isInternalUser == true)
+            {
+                <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+            }
             <a href="/" class="kart-link">Kart</a>
             <a asp-action="Inbox" class="inbox-link">Inbox</a>
             <a asp-action="Logout" class="logout-link">Logg ut</a>
