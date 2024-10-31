@@ -244,7 +244,7 @@
             document.getElementById('geoJsonInput').value = geoJsonString;
         });
 
-        var gj = @Html.Raw(ViewBag.Geojson);
+        var gj = @Html.Raw(ViewBag.Geojson)
         console.log("Hello, geoJSON is:", gj);
 
         L.geoJSON(gj).addTo(map);
