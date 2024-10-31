@@ -15,8 +15,8 @@ namespace Karverket.Controllers
         private static List<PositionModel> positions = new List<PositionModel>();
         private static List<User> users = new List<User>();
         private static User? currentUser;
-        private static Boolean? isPrioritisedUser = false;
-        private static Boolean? isInternalUser = false;
+        private static bool isPrioritisedUser = false;
+        private static bool isInternalUser = false;
 
         // private method that creates user 
         private User
@@ -134,23 +134,25 @@ namespace Karverket.Controllers
         [HttpPost]
         public IActionResult RegisterAreaChange(string geoJson, string type, string fylke, string description)
         {
-            var newChange = new AreaChange
+            var newChange = new Innmelding
             {
-                Id = Guid.NewGuid().ToString(),
+                //Id = Guid.NewGuid().ToString(),
                 Type = type,
                 Fylke = fylke,
                 Date = DateTime.Today,
                 GeoJson = geoJson,
-                Description = description
+                Description = description,
+                UserId = currentUser.Id,
+                Prioritised = isPrioritisedUser,
             };
 
 
-            _context.Innmeldinger.Add(newChange);
+            _context.Innmeldinger1.Add(newChange);
             _context.SaveChanges();
 
 
             // Redirect to the overview of changes
-            return RedirectToAction("endringer");
+            return RedirectToAction("inbox");
         }
 
         [HttpPost] /* Skal ligge i login controller n r databasen er klar */
@@ -249,7 +251,12 @@ namespace Karverket.Controllers
         public IActionResult Inbox()
         {
             // Logikk for   hente innboksdata her (om n dvendig)
-            var innmeldinger = _context.Innmeldinger.ToList();
+            //var innmeldinger = _context.Innmeldinger1.ToList();
+            var innmeldinger = _context.Innmeldinger1
+            .Where(i => i.UserId == currentUser.Id)
+            .ToList();
+            ViewBag.isPrioritisedUser = isPrioritisedUser;
+            ViewBag.isInternalUser = isInternalUser;
             return View(innmeldinger);
         }
 
@@ -262,7 +269,7 @@ namespace Karverket.Controllers
         public IActionResult MineInnmeldinger(string id, string color)
         {
 
-            var innmeldinger = _context.Innmeldinger.ToList();
+            var innmeldinger = _context.Innmeldinger1.ToList();
 
             // Hvis ingen farge er angitt, sett standard til "yellow"
             if (string.IsNullOrEmpty(color))

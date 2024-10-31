@@ -75,10 +75,6 @@
         <UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
         <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
     </ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Migrations\" />
-	</ItemGroup>
 
     <Target Name="Tailwind" BeforeTargets="Build">
        <Exec Command="npm run css:build" /> 
