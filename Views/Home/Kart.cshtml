@@ -38,7 +38,7 @@
 
     <div class="" style="position: absolute; bottom: 50px; right: 50%; z-index: 500;">
 
-        <button id="modalButton" class="bg-blue-600 rounded-md px-8 py-3 text-white text-lg">Send</button>
+        <button id="modalButton" class="bg-blue-600 rounded-md px-8 py-3 text-white text-lg invisible">Send</button>
     
     </div>
 
@@ -242,6 +242,7 @@
 
             // Set the GeoJSON string into the hidden input field in the form
             document.getElementById('geoJsonInput').value = geoJsonString;
+            document.getElementById("modalButton").classList.remove("invisible");
         });
 
         var gj = @Html.Raw(ViewBag.Geojson)
