@@ -38,7 +38,7 @@
 
     <div class="" style="position: absolute; bottom: 50px; right: 50%; z-index: 500;">
 
-        <button id="modalButton" class="bg-blue-600 rounded-md px-8 py-3 text-white text-lg">Send</button>
+        <button id="modalButton" class="bg-blue-600 rounded-md px-8 py-3 text-white text-lg invisible">Send</button>
     
     </div>
 
@@ -191,12 +191,21 @@
 
 
             jso = document.getElementById('geoJsonInput').value 
+            console.log("jso is: ", jso)
             jso = JSON.parse(jso)
             console.log(jso)
-            ost = jso.geometry.coordinates[0]
-            nord = jso.geometry.coordinates[1]
-            console.log("ost", ost)
-            console.log("nord", nord)
+            if (jso.geometry.type == "LineString") {
+                ost = jso.geometry.coordinates[0][0]
+                nord = jso.geometry.coordinates[0][1]
+                console.log("nord is: ", nord)
+            }
+            else {
+                ost = jso.geometry.coordinates[0]
+                nord = jso.geometry.coordinates[1]
+                console.log("ost", ost)
+                console.log("nord", nord)
+            }
+            
             
            fetch(`https://api.kartverket.no/kommuneinfo/v1/punkt?nord=${nord}&ost=${ost}&koordsys=4258`)
            .then ((r) => r.json())
@@ -242,6 +251,7 @@
 
             // Set the GeoJSON string into the hidden input field in the form
             document.getElementById('geoJsonInput').value = geoJsonString;
+            document.getElementById("modalButton").classList.remove("invisible");
         });
 
         var gj = @Html.Raw(ViewBag.Geojson)
