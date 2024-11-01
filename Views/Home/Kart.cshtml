@@ -191,12 +191,21 @@
 
 
             jso = document.getElementById('geoJsonInput').value 
+            console.log("jso is: ", jso)
             jso = JSON.parse(jso)
             console.log(jso)
-            ost = jso.geometry.coordinates[0]
-            nord = jso.geometry.coordinates[1]
-            console.log("ost", ost)
-            console.log("nord", nord)
+            if (jso.geometry.type == "LineString") {
+                ost = jso.geometry.coordinates[0][0]
+                nord = jso.geometry.coordinates[0][1]
+                console.log("nord is: ", nord)
+            }
+            else {
+                ost = jso.geometry.coordinates[0]
+                nord = jso.geometry.coordinates[1]
+                console.log("ost", ost)
+                console.log("nord", nord)
+            }
+            
             
            fetch(`https://api.kartverket.no/kommuneinfo/v1/punkt?nord=${nord}&ost=${ost}&koordsys=4258`)
            .then ((r) => r.json())
