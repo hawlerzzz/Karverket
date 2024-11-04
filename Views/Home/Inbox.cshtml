@@ -7,22 +7,21 @@
 <nav class="navbar">
     <div class="nav-logo">
         <a href="/">
-            <img src="~/css/kartverket-logo-1.jpg" alt="Logo" style="width: 110px; height: auto;">
+            <img width="100" src="~/css/kartverket-logo-1.jpg" alt="Logo">
         </a>
     </div>
-    <div class="flex">
+    <div class="flex justify-between">
         <div class="nav-links">
-            
             @if (ViewBag.isInternalUser == true)
             {
-                <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+                    <a asp-action="Innmeldinger" class="innmeldinger-link @(ViewContext.RouteData.Values["action"].ToString() == "Innmeldinger" ? "active-link" : "")">Innmeldinger</a>
             }
-            <a href="/" class="kart-link">Kart</a>
-            <a asp-action="Inbox" class="inbox-link">Inbox</a>
-            <a asp-action="Logout" class="logout-link">Logg ut</a>
+            <a asp-action="Index" class="kart-link @(ViewContext.RouteData.Values["action"].ToString() == "Kart" ? "active-link" : "")">Kart</a>
+            <a asp-action="Inbox" class="inbox-link @(ViewContext.RouteData.Values["action"].ToString() == "Inbox" ? "active-link" : "")">Inbox</a>
+            <a asp-action="Logout" class="logout-link @(ViewContext.RouteData.Values["action"].ToString() == "Logout" ? "active-link" : "")">Logg ut</a>
         </div>
-        <div class="profile ml-4">
-            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
+        <div class="profile ml-4 nav-links">
+            <a asp-action="Profile" class="profile-link @(ViewContext.RouteData.Values["action"].ToString() == "Profile" ? "active-link" : "")">Profil</a>
         </div>
     </div>
 </nav>
