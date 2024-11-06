@@ -20,7 +20,6 @@
             }
             <a asp-action="Index" class="kart-link @(ViewContext.RouteData.Values["action"].ToString() == "Kart" ? "active-link" : "")">Kart</a>
             <a asp-action="Inbox" class="inbox-link @(ViewContext.RouteData.Values["action"].ToString() == "Inbox" ? "active-link" : "")">Inbox</a>
-            <a asp-action="Logout" class="logout-link @(ViewContext.RouteData.Values["action"].ToString() == "Logout" ? "active-link" : "")">Logg ut</a>
         </div>
         <div class="profile ml-4 nav-links">
             <a asp-action="Profile" class="profile-link @(ViewContext.RouteData.Values["action"].ToString() == "Profile" ? "active-link" : "")">Profil</a>
@@ -50,6 +49,7 @@
 
         <a href="/Home/inbox">
             <button class="kart-knapp">Se mine innmeldinger</button>
+            <a asp-action="Logout" class="logout-link @(ViewContext.RouteData.Values["action"].ToString() == "Logout" ? "active-link" : "")">Logg ut </a>
         </a>
     </div>
 </div>
