@@ -1,6 +1,164 @@
+﻿@model List<Karverket.Models.Innmelding>
 @{
-ViewData["Title"] = "Innmeldinger";
+    ViewData["Title"] = "Innmeldinger";
 }
 
-<h1>Innmeldinger-siden</h1>
-<p>Dette er Innmeldinger-siden.</p>
+
+<div id="filtrerModal" class="hidden bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center" style="position: absolute; z-index: 1100;">
+    <!-- modal -->
+
+    <div class=" w-96 bg-white rounded-md opcaity-100">
+        <!-- modal content -->
+        <div class="border-b-2 border-gray-200 flex justify-between px-4">
+            <!-- header -->
+            <div class="flex items-center">
+                <h4 class="text-lg font-medium">Filtrer innmeldinger</h4>
+            </div>
+            <div id="modalCloseButton" class="p-2 my-2 hover:bg-gray-200 rounded-full">
+                <img src="/x.svg" />
+            </div>
+        </div>
+
+        <div class="p-2 mt-4 text-lg">
+            <form asp-action="Innmeldinger" method="get" class="flex flex-col justify-content-between h-full w-full">
+                <div>
+                    <label for="type" class=" text-lg">Type</label>
+                    <select name="type" class="w-full border-2 p-2 rounded-md my-2">
+                        <option value="">alle</option>
+                        <option value="land">land</option>
+                        <option value="hav">hav</option>
+                    </select>
+                    <label for="fylke" class=" text-lg">Fylke</label>
+                    <!-- <input name="tyype" class="w-full border-2 p-2 rounded-md my-2 " type="text" placeholder="type"  /> -->
+                    <select name="fylke" class="w-full border-2 p-2 rounded-md my-2">
+                        <option >Agder</option>
+                        <option >Akershus</option>
+                        <option >Buskerud</option>
+                        <option >Finnmark</option>
+                        <option >Innlandet</option>
+                        <option >Møre og Romsdal</option>
+                        <option>Nordland</option>
+                        <option >Oslo</option>
+                        <option >Rogaland</option>
+                        <option >Telemark</option>
+                        <option >Troms</option>
+                        <option >Trøndelag</option>
+                        <option >Vestfold</option>
+                        <option >Vestland</option>
+                        <option >Østfold</option>
+                    </select>
+
+
+                </div>
+                <button class="w-[368px] rounded-md bg-blue-500 p-2 text-center text-white" type="submit">Filtrer</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-logo">
+        <a href="/">
+            <img src="~/css/kartverket-logo-1.jpg" alt="Logo" style="width: 110px; height: auto;">
+        </a>
+    </div>
+    <div class="flex">
+        <div class="nav-links">
+
+            @if (ViewBag.isInternalUser == true)
+            {
+                <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+            }
+            <a href="/" class="kart-link">Kart</a>
+            <a asp-action="Inbox" class="inbox-link">Inbox</a>
+            <a asp-action="Logout" class="logout-link">Logg ut</a>
+        </div>
+        <div class="profile ml-4">
+            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
+        </div>
+    </div>
+</nav>
+
+<div class="inboxSide">
+    <a href="/Home" class="tilbake-link">Gå tilbake</a>
+
+    <h1 class="inbox-overskrift">Innmeldinger</h1>
+
+   
+
+
+    
+
+    <section id="innmeldingsStatus" class="justify-between">
+        <h2 class="innmeldingStatus font-bold">Innmeldinger tildelt til deg</h2>
+        <a class="my-4" id="filtrer">
+            <button class="kart-knapp">Filtrer</button>
+        </a>
+    </section>
+
+
+
+     <section id="innmeldingsStatus" class="justify-between">
+        <h2 class="innmeldingStatus">Prioriterte Innmeldinger</h2>
+    </section>
+
+    @foreach (var i in Model)
+    {
+        @if (i.Status == "Pending" && i.Prioritised == true)
+        {
+            <div class="message-box yellow-box">
+                <span><a href="/Home/innmelding?id=@i.Id&color=yellow" class="linkTilInnmelding">Innmelding @i.Id</a></span>
+                <span class="arrow">➔</span>
+            </div>
+        }
+    }
+
+
+    <section id="innmeldingsStatus" class="justify-between">
+        <h2 class="innmeldingStatus">Andre Innmeldinger</h2>
+    </section>
+
+
+    @foreach (var i in Model)
+    {
+        @if (i.Status == "Pending" && i.Prioritised == false)
+        {
+            <div class="message-box yellow-box">
+                <span><a href="/Home/innmelding?id=@i.Id&color=yellow" class="linkTilInnmelding">Innmelding @i.Id</a></span>
+                <span class="arrow">➔</span>
+            </div>
+        }
+    }
+
+</div>
+
+
+
+
+@section Scripts {
+
+    <script>
+        document.getElementById("filtrer").addEventListener("click", () => {
+
+            document.getElementById("filtrerModal").classList.remove("hidden")
+
+        })
+
+        document.getElementById("modalCloseButton").addEventListener("click", () => {
+
+            var filtrerModal = document.getElementById("filtrerModal")
+
+
+            if (!filtrerModal.classList.contains("hidden")) {
+                filtrerModal.classList.add("hidden")
+            }
+
+        })
+    </script>
+
+}

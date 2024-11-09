@@ -19,7 +19,17 @@ namespace Karverket.Models
         public int UserId { get; set; }
         [ForeignKey("UserId")]
         public User User { get; set; } // Navigation property
+
+
+        public int CaseManagerId { get; set; }
+        [ForeignKey("CaseManagerId")]
+        public User CaseManager { get; set; } // Navigation property for the case manager
+
+
         public bool Prioritised { get; set; } = false; // Default to false
+        public string Answer { get; set; }
+        
+        
     }
 
 
