@@ -13,7 +13,9 @@ namespace Karverket.Models
         public string SurName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        
+        public string? Fylke { get; set; }
+        public string Role { get; set; } = "BRUKER"; // BRUKER or SAKSBEHANDLER or ADMIN. BAD DB DESIGN SHOULD BE IT'S OWN TABLE
+
 
         // TODO: en måte å skille politi, osv. 
     }

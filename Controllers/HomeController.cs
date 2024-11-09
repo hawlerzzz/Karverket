@@ -66,7 +66,7 @@ namespace Karverket.Controllers
                 throw new WrongPassword(password);
             }
 
-            if (email.EndsWith("@kartverket.no", StringComparison.OrdinalIgnoreCase))
+            if (user.Role == "SAKSBEHANDLER" || user.Role == "ADMIN")
             {
                 isInternalUser = true;
             }
@@ -266,39 +266,111 @@ namespace Karverket.Controllers
 
         public IActionResult Inbox()
         {
-            // Logikk for   hente innboksdata her (om n dvendig)
-            //var innmeldinger = _context.Innmeldinger1.ToList();
             var innmeldinger = _context.Innmeldinger1
             .Where(i => i.UserId == currentUser.Id)
             .ToList();
+
             ViewBag.isPrioritisedUser = isPrioritisedUser;
             ViewBag.isInternalUser = isInternalUser;
+
             return View(innmeldinger);
         }
 
-        public IActionResult Innmeldinger()
+        public IActionResult Innmeldinger(string? type, string? fylke)
         {
-            // Logikk for   hente innmeldingsdata her (om n dvendig)
-            return View();
-        }
-
-        public IActionResult MineInnmeldinger(string id, string color)
-        {
-
-            var innmeldinger = _context.Innmeldinger1.ToList();
-
-            // Hvis ingen farge er angitt, sett standard til "yellow"
-            if (string.IsNullOrEmpty(color))
+            // Redirect if not an internal user
+            if (!isInternalUser)
             {
-                color = "yellow";
+                return RedirectToAction("index");
             }
 
-            // Legg farge til ViewBag for å bruke den i viewet
+            // Filter innmeldinger based on current user, status, type, and fylke
+            var innmeldinger = _context.Innmeldinger1
+                .Where(i => i.CaseManagerId == currentUser.Id)
+                .Where(i => i.Status == "Pending")
+                .Where(i => string.IsNullOrEmpty(type) || i.Type == type)
+                .Where(i => string.IsNullOrEmpty(fylke) || i.Fylke == fylke)
+                .ToList();
+
+            // Set ViewBag properties
+            ViewBag.isPrioritisedUser = isPrioritisedUser;
+            ViewBag.isInternalUser = isInternalUser;
+
+            return View(innmeldinger);
+        }
+
+        public IActionResult Innmelding(string id, string color)
+        {
+            // Hent innmelding basert på id
+            var innmelding = _context.Innmeldinger1.FirstOrDefault(i => i.Id == int.Parse(id));
+
+            // Hent alle saksbehandlere fra databasen
+            var saksbehandlere = _context.Users
+                .Where(i => i.Role == "SAKSBEHANDLER")
+                .ToList();
+
+            var innmeldingOgSaksbehandlere = new InnmeldingerSaksbehandlere
+            {
+                Saksbehandlere = saksbehandlere,
+                innmelding = innmelding
+            };
+
+            // Hvis ingen farge er angitt, sett standard til "yellow"
+            color ??= "yellow";
+
             ViewBag.Id = id;
             ViewBag.Color = color;
-            Console.WriteLine("Id is: from home: ", id);
-            Console.WriteLine("col is: from home: ", color);
-            return View(innmeldinger);
+
+            return View(innmeldingOgSaksbehandlere);
+        }
+
+
+
+        public IActionResult AvvisInnmelding(int id, string melding)
+        {
+            var innmelding = _context.Innmeldinger1
+            .FirstOrDefault(i => i.Id == id);
+
+            if (innmelding != null)
+            {
+                
+                innmelding.Status = "Declined";
+                innmelding.Answer = melding;
+
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Innmeldinger");
+        }
+
+        public IActionResult GodkjennInnmelding(int id, string melding)
+        {
+            var innmelding = _context.Innmeldinger1
+            .FirstOrDefault(i => i.Id == id);
+
+            if (innmelding != null)
+            {
+
+                innmelding.Status = "Accepted";
+                innmelding.Answer = melding;
+
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Innmeldinger");
+        }
+
+        public IActionResult DelegerInnmelding(int id, int saksbehandler)
+        {
+            var innmelding = _context.Innmeldinger1
+            .FirstOrDefault(i => i.Id == id);
+
+            if (innmelding != null)
+            {
+
+                innmelding.CaseManagerId = saksbehandler;
+
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Innmeldinger");
         }
     }
 

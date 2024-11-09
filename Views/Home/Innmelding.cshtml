@@ -1,0 +1,234 @@
+@model InnmeldingerSaksbehandlere
+@{
+    ViewData["Title"] = "MineInnmeldinger";
+    var feedbackColor = ViewBag.Color ?? "yellow"; // Standard til "yellow" hvis ingen farge er angitt
+    Console.WriteLine("id is: ", ViewBag.Id);
+    //var innmelding = Model.FirstOrDefault(i => i.Id == int.Parse(ViewBag.id));
+}
+
+
+<div id="delegerModal" class="hidden bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center" style="position: absolute; z-index: 1100;">
+    <!-- modal -->
+
+    <div class=" w-96 bg-white rounded-md opcaity-100">
+        <!-- modal content -->
+        <div class="border-b-2 border-gray-200 flex justify-between px-4">
+            <!-- header -->
+            <div class="flex items-center">
+                <h4 class="text-lg font-medium">Deleger til saksbehandler</h4>
+            </div>
+            <div id="modalCloseButton" class="p-2 my-2 hover:bg-gray-200 rounded-full">
+                <img src="/x.svg" />
+            </div>
+        </div>
+
+        <div class="p-2 mt-4 text-lg">
+            <!-- modal body -->
+            <form asp-action="DelegerInnmelding" method="post" class="flex flex-col justify-content-between h-full w-full">
+                <div>
+                    <input class="hidden" name="id" value="@Model.innmelding.Id" />
+                    <label for="saksbehandler" class=" text-lg">Velg Saksbehandler</label>
+                    <select name="saksbehandler" class="w-full border-2 p-2 rounded-md my-2">
+                        @foreach (var saksbehandler in Model.Saksbehandlere)
+                        {
+                            <option value="@saksbehandler.Id">@saksbehandler.Name</option>
+                        }
+                    </select>
+                    
+                </div>
+                <button class="w-[368px] rounded-md bg-blue-500 p-2 text-center text-white" type="submit">Send</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="godkjennModal" class="hidden bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center" style="position: absolute; z-index: 1100;">
+    <!-- modal -->
+
+    <div class=" w-96 bg-white rounded-md opcaity-100">
+        <!-- modal content -->
+        <div class="border-b-2 border-gray-200 flex justify-between px-4">
+            <!-- header -->
+            <div class="flex items-center">
+                <h4 class="text-lg font-medium">Godkjenn innmelding</h4>
+            </div>
+            <div id="modalCloseButton" class="p-2 my-2 hover:bg-gray-200 rounded-full">
+                <img src="/x.svg" />
+            </div>
+        </div>
+
+        <div class="p-2 mt-4 text-lg">
+            <!-- modal body -->
+            <form asp-action="GodkjennInnmelding" method="post" class="flex flex-col justify-content-between h-full w-full">
+                <div>
+                    <input class="hidden" name="id" value="@Model.innmelding.Id" />
+                    <label for="melding" class="text-lg">Tilbakemelding</label>
+                    <textarea name="melding" class="w-full border-2 p-2 rounded-md my-2 ">Din innmelding er godkjent. Tusen takk!</textarea>
+
+                </div>
+                <button class="w-[368px] rounded-md bg-blue-500 p-2 text-center text-white" type="submit">Send</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="avvisModal" class="hidden bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center" style="position: absolute; z-index: 1100;">
+    <!-- modal -->
+
+    <div class=" w-96 bg-white rounded-md opcaity-100">
+        <!-- modal content -->
+        <div class="border-b-2 border-gray-200 flex justify-between px-4">
+            <!-- header -->
+            <div class="flex items-center">
+                <h4 class="text-lg font-medium">Avvis innmelding</h4>
+            </div>
+            <div id="modalCloseButton" class="p-2 my-2 hover:bg-gray-200 rounded-full">
+                <img src="/x.svg" />
+            </div>
+        </div>
+
+        <div class="p-2 mt-4 text-lg">
+            <!-- modal body -->
+            <form asp-action="AvvisInnmelding" method="post" class="flex flex-col justify-content-between h-full w-full">
+                <div>
+                    <label for="melding" class="text-lg">Tilbakemelding</label>
+                    <input name="id" class="hidden" value="@Model.innmelding.Id" />
+                    <textarea name="melding" class="w-full border-2 p-2 rounded-md my-2 "></textarea>
+                </div>
+                <button class="w-[368px] rounded-md bg-blue-500 p-2 text-center text-white" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- navbar-->
+<nav class="navbar">
+    <div class="nav-logo">
+        <a href="">
+            <img src="~/css/kartverket-logo-1.jpg" alt="Logo" style="width: 110px; height: auto;">
+        </a>
+    </div>
+    <div class="flex">
+        <div class="nav-links">
+            <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
+            <a href="" class="kart-link">Kart</a>
+            <a asp-action="Inbox" class="inbox-link">Inbox</a>
+            <a asp-action="Logout" class="logout-link">Logg ut</a>
+        </div>
+        <div class="profile ml-4">
+            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Selve siden -->
+
+<div class="innmelding-container">
+    <a href="/Home/Inbox" class="tilbake-link">Gå tilbake</a>
+
+    
+
+    <h1 class="innmelding-title">Innmelding</h1>
+    <!-- Dynamisk farge brukes her basert på feedbackColor -->
+    @if (ViewBag.isInternalUser == false)
+    {
+        <div class="innmelding-tilbakemelding @feedbackColor">
+            <div class="innmelding-header">
+                <span class="icon">&#128100;</span> <!-- Ikon for saksbehandler -->
+                <div class="header-text">
+                    <p>Thomas, saksbehandler</p>
+                    @if (Model.innmelding.Answer != null)
+                    {
+                        <p>@Model.innmelding.Answer</p>
+                    }
+                    else
+                    {
+                        <p>Hei, jeg jobber med din innmelding</p>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div class="innmelding-boks">
+        <div class="innmelding-details">
+            <strong>Type:</strong>
+            <p>@Model.innmelding.Type</p>
+            <strong>Fylke:</strong>
+            <p>@Model.innmelding.Fylke</p>
+            <strong>Dato:</strong>
+            <p>@Model.innmelding.Date.ToString("dd/MM/yyyy")</p>
+            
+            <strong>Kommentar:</strong>
+            <p>@Model.innmelding.Description</p>
+        </div>
+        
+        <a href="/Home/seikart?id=@Model.innmelding.Id">
+            <button class="kart-knapp">Se i kartet</button>
+        </a>
+        
+        <div>
+            <a id="avvis">
+                <button class="kart-knapp bg-red-700 hover:bg-red-800">Avvis</button>
+            </a>
+            <a id="godkjenn">
+                <button class="kart-knapp bg-green-700 hover:bg-green-800">Godkjenn</button>
+            </a>
+            <a id="deleger">
+                <button class="kart-knapp">Deleger</button>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+        document.getElementById("deleger").addEventListener("click", () => {
+            
+            document.getElementById("delegerModal").classList.remove("hidden")
+        
+        })
+        document.getElementById("godkjenn").addEventListener("click", () => {
+
+            document.getElementById("godkjennModal").classList.remove("hidden")
+
+        })
+        document.getElementById("avvis").addEventListener("click", () => {
+
+            document.getElementById("avvisModal").classList.remove("hidden")
+
+        })
+        document.querySelectorAll("#modalCloseButton").forEach(button => {
+        
+            button.addEventListener("click", () => {
+
+                var delegerModal = document.getElementById("delegerModal")
+                var godkjennModal = document.getElementById("godkjennModal")
+                var avvisModal = document.getElementById("avvisModal")
+
+                if (!delegerModal.classList.contains("hidden")) {
+                    delegerModal.classList.add("hidden")
+                }
+                if (!godkjennModal.classList.contains("hidden")) {
+                    godkjennModal.classList.add("hidden")
+                }
+                if (!avvisModal.classList.contains("hidden")) {
+                    avvisModal.classList.add("hidden")
+                }
+            
+
+            })
+        })
+    </script>
+
+}
