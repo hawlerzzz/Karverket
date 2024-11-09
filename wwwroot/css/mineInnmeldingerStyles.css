@@ -64,6 +64,16 @@
     font-size: 16px; /* Tekststørrelse for knappen */
     margin-top: 20px; /* Avstand over knappen */
 }
+.logout-link {
+    background-color: #0066cc; /* Blå bakgrunn for knappen */
+    color: white; /* Hvit tekst på knappen */
+    border: none; /* Fjerner kantlinje */
+    padding: 10px 20px; /* Luft inni knappen */
+    border-radius: 4px; /* Runde kanter på knappen */
+    cursor: pointer; /* Håndmarkør når man holder over knappen */
+    font-size: 16px; /* Tekststørrelse for knappen */
+    margin-top: 20px; /* Avstand over knappen */
+}
 
 .kart-knapp:hover {
     background-color: #005bb5; /* Mørkere blå farge ved hover */

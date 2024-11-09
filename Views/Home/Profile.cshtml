@@ -4,52 +4,28 @@
 @{
 }
 @model Karverket.Models.User
-<!--<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Profil</title>
-        <link rel="stylesheet" href="~/css/mainpagestyles.css" />
-     </head>
-
-
-    <body>
-        <div class="profile-container">
-            <h2>Profil</h2>
-            <div class="profile-info">
-                <p><strong>Fornavn:</strong> <span id="first-name">@Model.Name</span></p>
-                <p><strong>Etternavn:</strong> <span id="last-name">@Model.SurName</span></p>
-                <p><strong>Fylke:</strong> <span id="region">@Model.</span></p>
-                <p><strong>E-post:</strong> <span id="email">@Model.Email</span></p>
-        </div>
-        <div class="profile-picture">
-            <p>Saksbehandler profilbilde</p>
-        </div>
-    </div>
-  
-    </body>
-</html>-->
-
-
-
 
 <!-- navbar-->
 <nav class="navbar">
     <div class="nav-logo">
-        <a href="">
-            <img src="~/css/kartverket-logo-1.jpg" alt="Logo" style="width: 110px; height: auto;">
+        <a href="/">
+            <img width="100" src="~/css/kartverket-logo-1.jpg" alt="Logo">
         </a>
     </div>
-    <div class="flex">
+    <div class="flex justify-between">
         <div class="nav-links">
-            <a asp-action="Innmeldinger" class="innmeldinger-link">Innmeldinger</a>
-            <a href="" class="kart-link">Kart</a>
-            <a asp-action="Inbox" class="inbox-link">Inbox</a>
-            <a asp-action="Logout" class="logout-link">Logg ut</a>
+            @if (ViewBag.isInternalUser == true)
+            {
+                <a asp-action="Innmeldinger" class="innmeldinger-link @(ViewContext.RouteData.Values["action"].ToString() == "Innmeldinger" ? "active-link" : "")">Innmeldinger</a>
+            }
+            <a asp-action="Index" class="kart-link @(ViewContext.RouteData.Values["action"].ToString() == "Kart" ? "active-link" : "")">Kart</a>
+            <a asp-action="Inbox" class="inbox-link @(ViewContext.RouteData.Values["action"].ToString() == "Inbox" ? "active-link" : "")">Inbox</a>
         </div>
-        <div class="profile ml-4">
-            <a asp-action="Profile" class="profile-link"><i></i>Profil</a>
+        <div class="profile ml-4 nav-links">
+            <a asp-action="Profile" class="profile-link @(ViewContext.RouteData.Values["action"].ToString() == "Profile" ? "active-link" : "")">Profil</a>
         </div>
     </div>
-</nav> 
+</nav>
 
 <!-- Selve siden -->
 
@@ -73,6 +49,7 @@
 
         <a href="/Home/inbox">
             <button class="kart-knapp">Se mine innmeldinger</button>
+            <a asp-action="Logout" class="logout-link @(ViewContext.RouteData.Values["action"].ToString() == "Logout" ? "active-link" : "")">Logg ut </a>
         </a>
     </div>
 </div>
