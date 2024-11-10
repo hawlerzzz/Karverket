@@ -95,6 +95,8 @@ namespace Karverket.Controllers
         {
             // make currentUser empty
             currentUser = null;
+            isPrioritisedUser = false;
+            isInternalUser = false;
         }
 
 
