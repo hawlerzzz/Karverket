@@ -162,7 +162,6 @@ namespace Karverket.Controllers
                 Description = description,
                 UserId = currentUser.Id,
                 Prioritised = isPrioritisedUser,
-                CaseManagerId = 5 // 
             };
 
 
@@ -189,7 +188,7 @@ namespace Karverket.Controllers
             return RedirectToAction("index");
         }
 
-        public IActionResult Endringer()                                                                                                                            
+        public IActionResult Endringer()
         {
             return View(changesList);
         }
@@ -293,7 +292,6 @@ namespace Karverket.Controllers
                 .Where(i => i.Status == "Pending")
                 .Where(i => string.IsNullOrEmpty(type) || i.Type == type)
                 .Where(i => string.IsNullOrEmpty(fylke) || i.Fylke == fylke)
-                .OrderByDescending(i => i.Date)
                 .ToList();
 
             // Set ViewBag properties
