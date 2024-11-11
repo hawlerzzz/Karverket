@@ -5,8 +5,14 @@
 }
 @model Karverket.Models.User
 
+@{
+    Layout = "_Layout";
+}
+
+@Html.Partial("_Navbar")
+
 <!-- navbar-->
-<nav class="navbar">
+<!--<nav class="navbar">
     <div class="nav-logo">
         <a href="/">
             <img width="100" src="~/css/kartverket-logo-1.jpg" alt="Logo">
@@ -25,7 +31,7 @@
             <a asp-action="Profile" class="profile-link @(ViewContext.RouteData.Values["action"].ToString() == "Profile" ? "active-link" : "")">Profil</a>
         </div>
     </div>
-</nav>
+</nav>-->
 
 <!-- Selve siden -->
 
