@@ -1,0 +1,20 @@
+﻿<nav class="navbar">
+    <div class="nav-logo">
+        <a href="/">
+            <img width="100" src="~/css/kartverket-logo-1.jpg" alt="Logo">
+        </a>
+    </div>
+    <div class="flex justify-between">
+        <div class="nav-links">
+            @if (ViewBag.isInternalUser == true)
+            {
+                <a asp-action="Innmeldinger" class="innmeldinger-link @(ViewContext.RouteData.Values["action"].ToString() == "Innmeldinger" ? "active-link" : "")">Innmeldinger</a>
+            }
+            <a asp-action="Index" class="kart-link @(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active-link" : "")">Kart</a>
+            <a asp-action="Inbox" class="inbox-link @(ViewContext.RouteData.Values["action"].ToString() == "Inbox" ? "active-link" : "")">Inbox</a>
+        </div>
+        <div class="profile mx-4 nav-links">
+            <a asp-action="Profile" class="profile-link @(ViewContext.RouteData.Values["action"].ToString() == "Profile" ? "active-link" : "")">Profil</a>
+        </div>
+    </div>
+</nav>

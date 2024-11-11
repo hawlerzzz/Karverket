@@ -262,8 +262,16 @@ namespace Karverket.Controllers
         }
 
         public IActionResult Profile()
+
         {
+            ViewBag.isPrioritisedUser = isPrioritisedUser;
+            ViewBag.isInternalUser = isInternalUser;
+
             return View(currentUser);
+
+           
+
+           
         }
 
         public IActionResult Inbox()

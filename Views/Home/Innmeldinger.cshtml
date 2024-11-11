@@ -3,6 +3,11 @@
     ViewData["Title"] = "Innmeldinger";
 }
 
+@{
+    Layout = "_Layout";
+}
+
+@Html.Partial("_Navbar")
 
 <div id="filtrerModal" class="hidden bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center" style="position: absolute; z-index: 1100;">
     <!-- modal -->
@@ -60,7 +65,9 @@
 
 
 
+
 <!-- Navbar -->
+<!--
 <nav class="navbar">
     <div class="nav-logo">
         <a href="/">
@@ -83,6 +90,7 @@
         </div>
     </div>
 </nav>
+-->
 
 <div class="inboxSide">
     <a href="/Home" class="tilbake-link">Gå tilbake</a>
