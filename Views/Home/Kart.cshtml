@@ -2,6 +2,12 @@
     ViewData["Title"] = "Kart";
 }
 
+@{
+    Layout = "_Layout";
+}
+
+@Html.Partial("_Navbar")
+
 <!--<div>
     <a asp-action="Logout">Logg ut</a>
     <a asp-action="ViewUsers">Users</a>
@@ -9,7 +15,7 @@
 </div> -->
 
 
-<nav class="navbar">
+<!--<nav class="navbar">
     <div class="nav-logo">
         <a href="/">
             <img width="100" src="~/css/kartverket-logo-1.jpg" alt="Logo">
@@ -23,13 +29,13 @@
             }
             <a asp-action="Index" class="kart-link @(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active-link" : "")">Kart</a>
             <a asp-action="Inbox" class="inbox-link @(ViewContext.RouteData.Values["action"].ToString() == "Inbox" ? "active-link" : "")">Inbox</a>
-            <!--  <a asp-action="Logout" class="logout-link @(ViewContext.RouteData.Values["action"].ToString() == "Logout" ? "active-link" : "")">Logg ut</a> -->
+            <a asp-action="Logout" class="logout-link @(ViewContext.RouteData.Values["action"].ToString() == "Logout" ? "active-link" : "")">Logg ut</a>
         </div>
         <div class="profile mx-4 nav-links">
             <a asp-action="Profile" class="profile-link @(ViewContext.RouteData.Values["action"].ToString() == "Profile" ? "active-link" : "")">Profil</a>
         </div>
     </div>
-</nav>
+</nav> -->
 
 
 <!-- Map container with defined height -->
