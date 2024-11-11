@@ -27,7 +27,7 @@ namespace Karverket.Models
 
 
         public bool Prioritised { get; set; } = false; // Default to false
-        public string Answer { get; set; }
+        public string Answer { get; set; } = ""; 
         
         
     }
