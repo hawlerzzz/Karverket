@@ -174,8 +174,11 @@
             <button class="kart-knapp">Se i kartet</button>
         </a>
         
-        <div>
-            <a id="avvis">
+
+        @if (ViewBag.isInternalUser == true)
+        {
+            <div>
+                <a id="avvis">
                 <button class="kart-knapp bg-red-700 hover:bg-red-800">Avvis</button>
             </a>
             <a id="godkjenn">
@@ -184,7 +187,8 @@
             <a id="deleger">
                 <button class="kart-knapp">Deleger</button>
             </a>
-        </div>
+            </div>
+        }
         
     </div>
 </div>

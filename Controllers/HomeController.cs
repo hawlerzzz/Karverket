@@ -162,6 +162,7 @@ namespace Karverket.Controllers
                 Description = description,
                 UserId = currentUser.Id,
                 Prioritised = isPrioritisedUser,
+                CaseManagerId = 5
             };
 
 
@@ -300,6 +301,7 @@ namespace Karverket.Controllers
                 .Where(i => i.Status == "Pending")
                 .Where(i => string.IsNullOrEmpty(type) || i.Type == type)
                 .Where(i => string.IsNullOrEmpty(fylke) || i.Fylke == fylke)
+                .OrderByDescending(i => i.Date)
                 .ToList();
 
             // Set ViewBag properties
@@ -330,6 +332,8 @@ namespace Karverket.Controllers
 
             ViewBag.Id = id;
             ViewBag.Color = color;
+            ViewBag.isPrioritisedUser = isPrioritisedUser;
+            ViewBag.isInternalUser = isInternalUser;
 
             return View(innmeldingOgSaksbehandlere);
         }
