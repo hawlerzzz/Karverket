@@ -137,7 +137,7 @@ namespace Karverket.Controllers
         public IActionResult SeIKart(int Id)
         {
 
-         
+
 
 
             var innmelding = _context.Innmeldinger1
@@ -162,7 +162,7 @@ namespace Karverket.Controllers
                 Description = description,
                 UserId = currentUser.Id,
                 Prioritised = isPrioritisedUser,
-                CaseManagerId = 5
+                CaseManagerId = 2
             };
 
 
@@ -171,7 +171,7 @@ namespace Karverket.Controllers
 
 
             // Redirect to the overview of changes
-            return RedirectToAction("inbox");
+            return RedirectToAction("innmeldingbekreftelse");
         }
 
         [HttpPost] /* Skal ligge i login controller n r databasen er klar */
@@ -270,9 +270,9 @@ namespace Karverket.Controllers
 
             return View(currentUser);
 
-           
 
-           
+
+
         }
 
         public IActionResult Inbox()
@@ -347,7 +347,7 @@ namespace Karverket.Controllers
 
             if (innmelding != null)
             {
-                
+
                 innmelding.Status = "Declined";
                 innmelding.Answer = melding;
 
@@ -386,7 +386,14 @@ namespace Karverket.Controllers
             }
             return RedirectToAction("Innmeldinger");
         }
+
+        public IActionResult Innmeldingbekreftelse()
+        {
+            return View();
+        }
     }
+
+
 
 
 }

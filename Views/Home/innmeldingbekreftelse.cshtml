@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    Layout = "_Layout";
+}
+
+@Html.Partial("_Navbar")
+
+<link href="~/css/mainpagestyles.css" rel="stylesheet" />
+
+
+<div class="innmeldingbekreftelse">
+    <div>
+        <p>Takk for din innmelding!</p>
+        <p>Din innmelding er nå sendt, og vil bli besvart snarest mulig.</p>
+        <a asp-action="Index" class="kart-link @(ViewContext.RouteData.Values["action"].ToString() == "Kart" ? "active-link" : "")">Kart</a>
+        <a asp-action="Inbox" class="inbox-link @(ViewContext.RouteData.Values["action"].ToString() == "Inbox" ? "active-link" : "")">Inbox</a>
+    </div>
+    <div>
+
+    </div>
+</div>
