@@ -15,7 +15,7 @@
 .innmelding-title {
     font-size: 32px; /* Stor tekst for tittelen */
     margin-bottom: 30px; /* Luft under tittelen */
-    color: #333; /* Mørk tekstfarge */
+    color:green; /* Mørk tekstfarge */
 }
 
 .innmelding-boks {
