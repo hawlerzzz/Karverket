@@ -14,9 +14,13 @@
 <div class="innmeldingbekreftelse">
     <div>
         <p>Takk for din innmelding!</p>
-        <p>Din innmelding er nå sendt, og vil bli besvart snarest mulig.</p>
-        <a asp-action="Index" class="kart-link @(ViewContext.RouteData.Values["action"].ToString() == "Kart" ? "active-link" : "")">Kart</a>
-        <a asp-action="Inbox" class="inbox-link @(ViewContext.RouteData.Values["action"].ToString() == "Inbox" ? "active-link" : "")">Inbox</a>
+        <p style="margin-bottom:40px;"> Din innmelding er nå sendt, og vil bli besvart snarest mulig.</p>
+
+        <div class="links-innmeld-bekref">
+            <a asp-action="Index" class="kart-bekref @(ViewContext.RouteData.Values["action"].ToString() == "Kart" ? "active-link" : "")">Kart</a>
+            <a asp-action="Inbox" class="inbox-bekref @(ViewContext.RouteData.Values["action"].ToString() == "Inbox" ? "active-link" : "")">Inbox</a>
+        <div/>
+
     </div>
     <div>
 
