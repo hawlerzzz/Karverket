@@ -353,3 +353,11 @@ section a {
     color: green !important;
     font-weight: bold;
 }
+
+.innmeldingbekreftelse {
+    padding: 20px; /* Luft inni boksen */
+    border-radius: 8px; /* Runde hjørner */
+    margin-bottom: 20px; /* Avstand mellom boksene */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Svak skygge */
+    background-color: #ffffff; /* Hvit bakgrunn for boks */
+}
