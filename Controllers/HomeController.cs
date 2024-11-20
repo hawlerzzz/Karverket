@@ -2,8 +2,6 @@ using Karverket.DAL;
 using Karverket.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.Json.Serialization;
 
 namespace Karverket.Controllers
 {
@@ -152,9 +150,11 @@ namespace Karverket.Controllers
         [HttpPost]
         public IActionResult RegisterAreaChange(string geoJson, string type, string fylke, string description)
         {
+            var caseManager = _context.Users
+            .FirstOrDefault(u => u.Role == "SAKSBEHANDLER" && u.Fylke == fylke);
+
             var newChange = new Innmelding
             {
-                //Id = Guid.NewGuid().ToString(),
                 Type = type,
                 Fylke = fylke,
                 Date = DateTime.Today,
@@ -162,7 +162,7 @@ namespace Karverket.Controllers
                 Description = description,
                 UserId = currentUser.Id,
                 Prioritised = isPrioritisedUser,
-                CaseManagerId = 2
+                CaseManagerId = caseManager.Id
             };
 
 
@@ -214,7 +214,7 @@ namespace Karverket.Controllers
                 return RedirectToAction("index", "signup", new { error = "Epost er allerede brukt!" });
             }
 
-            // LogUserIn(email, password);
+             LogUserIn(email, password);
 
             return RedirectToAction("index");
         }
@@ -248,6 +248,18 @@ namespace Karverket.Controllers
         public IActionResult CorrectionOverview()
         {
             return View(positions);
+        }
+
+        public IActionResult admin()
+        {
+            
+            if (currentUser == null || currentUser.Role != "ADMIN")
+            {
+                return RedirectToAction("index", "Login");
+            }
+            var innmeldinger = _context.Users
+            .ToList();
+            return View(innmeldinger);
         }
 
 
@@ -387,9 +399,20 @@ namespace Karverket.Controllers
             return RedirectToAction("Innmeldinger");
         }
 
-        public IActionResult Innmeldingbekreftelse()
+
+        public IActionResult AssignRole(int UserId, string Role, string fylke)
         {
-            return View();
+            var user = _context.Users
+            .FirstOrDefault(i => i.Id == UserId);
+
+            if (user != null)
+            {
+
+                user.Role = Role;
+
+                _context.SaveChanges();
+            }
+            return RedirectToAction("admin");
         }
     }
 

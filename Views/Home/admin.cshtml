@@ -1,0 +1,57 @@
+﻿@model List<User>
+@{
+    ViewData["Title"] = "Admin";
+}
+
+@Html.Partial("_Navbar")
+
+<div class="container mx-auto mt-5">
+    <h1 class="text-2xl font-bold mb-5">Brukere</h1>
+
+    <div class="flex justify-end mb-3">
+        <button id="openFilterModal" class="bg-blue-500 text-white p-2 rounded">Filter Users</button>
+    </div>
+
+    <table class="min-w-full bg-white border">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border">ID</th>
+                <th class="py-2 px-4 border">Navn</th>
+                <th class="py-2 px-4 border">Etter Navn</th>
+                <th class="py-2 px-4 border">E-post</th>
+                <th class="py-2 px-4 border">Nåværende Rolle</th>
+                <th class="py-2 px-4 border">Tildele rolle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr class="border">
+                    <td class="py-2 px-4">@user.Id</td>
+                    <td class="py-2 px-4">@user.Name</td>
+                    <td class="py-2 px-4">@user.SurName</td>
+                    <td class="py-2 px-4">@user.Email</td>
+                    <td class="py-2 px-4">@user.Role</td>
+                    <td class="py-2 px-4">
+                        <form asp-action="AssignRole" method="post">
+                            <input type="hidden" name="UserId" value="@user.Id" />
+                            <select name="Role" class="border rounded p-1">
+                                <option>BRUKER</option>
+                                <option>SAKSBEHANDLER</option>
+                                <option>ADMIN</option>
+                            </select>
+                            <select name="Fylke" class="border rounded p-1">
+                                <option>Agder</option>
+                                <option>Oslo</option>
+                                <option>Trom</option>
+                            </select>
+                            <button type="submit" class="bg-green-500 text-white p-1 rounded ml-2">Oppdater</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
