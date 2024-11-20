@@ -34,7 +34,6 @@
                         <option value="hav">hav</option>
                     </select>
                     <label for="fylke" class=" text-lg">Fylke</label>
-                    <!-- <input name="tyype" class="w-full border-2 p-2 rounded-md my-2 " type="text" placeholder="type"  /> -->
                     <select name="fylke" class="w-full border-2 p-2 rounded-md my-2">
                         <option >Agder</option>
                         <option >Akershus</option>
@@ -119,10 +118,10 @@
     {
         @if (i.Status == "Pending" && i.Prioritised == true)
         {
-            <div class="message-box yellow-box">
-                <span><a href="/Home/innmelding?id=@i.Id&color=yellow" class="linkTilInnmelding">Innmelding @i.Id</a></span>
+            <a href="/Home/innmelding?id=@i.Id&color=yellow" class="message-box yellow-box">
+                <span><span class="linkTilInnmelding">Innmelding @i.Id</span></span>
                 <span class="arrow">➔</span>
-            </div>
+            </a>
         }
     }
 
@@ -136,10 +135,10 @@
     {
         @if (i.Status == "Pending" && i.Prioritised == false)
         {
-            <div class="message-box yellow-box">
-                <span><a href="/Home/innmelding?id=@i.Id&color=yellow" class="linkTilInnmelding">Innmelding @i.Id</a></span>
+            <a href="/Home/innmelding?id=@i.Id&color=yellow" class="message-box yellow-box">
+                <span><span  class="linkTilInnmelding">Innmelding @i.Id</span></span>
                 <span class="arrow">➔</span>
-            </div>
+            </a>
         }
     }
 
@@ -168,5 +167,4 @@
 
         })
     </script>
-
 }
