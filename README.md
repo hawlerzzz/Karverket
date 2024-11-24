@@ -34,22 +34,28 @@ Denne applikasjonen er et verktøy utviklet for Kartverket som skal hjelpe bruke
 
 Funksjonaliteter
 ----------------
-*Registrering av bruker*
+**Registrering av bruker**
 
 En bruker har muligheten til å registrer seg og benytte systemet.
 
-*Innlogging*
+**Innlogging**
 
 For at en bruker skal kunne ta i bruk applikasjonen, må de etter registrering, logge inn med epost og passord.
 
-*Tilgangsnivå*
+**Tilgangsnivå**
 
 Innen applikasjonen eksisterer det ulike tilgangsnivå for forskjellige brukere.
-De tre tilgangsnivåene er brukere, saksbehandlere og admins. 
-*Brukere*
+De tre tilgangsnivåene er brukere, saksbehandlere og admins.
+
+**Brukere**
+
 Opprette rapporter og sende inn.
-*Saksbehandler*
+
+**Saksbehandler**
+
 Opprette rapporter, sende inn, svare rapporter, delegere rapporter.
-*Admin*
+
+**Admin**
+
 (Høyeste tilgangsnivå) 
 Opprette rapporter, sende inn, svare rapporter, delegere rapporter, tildele brukere til ulikt tilgangsnivå
