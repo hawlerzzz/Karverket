@@ -29,17 +29,17 @@ LINK: localhost:8080
 E-post: admin@kartverket.no
 passord: 1234
 ### SAKSBEHANDLER BRUKERE
-E-post: oslo@kartverket.no passord: 1234
-E-post: viken@kartverket.no passord: 1234
-E-post: innlandet@kartverket.no passord: 1234
-E-post: vestfoldogtelemark@kartverket.no passord: 1234
-E-post: agder@kartverket.no passord: 1234
-E-post: rogaland@kartverket.no passord: 1234
-E-post: vestland@kartverket.no passord: 1234
-E-post: møreogromsdal@kartverket.no passord: 1234
-E-post: trøndelag@kartverket.no passord: 1234
-E-post: nordland@kartverket.no passord: 1234
-E-post: tromsogfinnmark@kartverket.no passord: 1234
+* E-post: oslo@kartverket.no passord: 1234
+* E-post: viken@kartverket.no passord: 1234
+* E-post: innlandet@kartverket.no passord: 1234
+* E-post: vestfoldogtelemark@kartverket.no passord: 1234
+* E-post: agder@kartverket.no passord: 1234
+* E-post: rogaland@kartverket.no passord: 1234
+* E-post: vestland@kartverket.no passord: 1234
+* E-post: møreogromsdal@kartverket.no passord: 1234
+* E-post: trøndelag@kartverket.no passord: 1234
+* E-post: nordland@kartverket.no passord: 1234
+* E-post: tromsogfinnmark@kartverket.no passord: 1234
 
 ## Komponenter av applikasjonen
 
