@@ -9,3 +9,8 @@ Utviklet av;
     -Hashmat
     -Clovis
     -Yousef
+
+
+COMMAND: docker-compose up --build
+
+LINK: localhost:8080

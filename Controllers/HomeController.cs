@@ -383,7 +383,7 @@ namespace Karverket.Controllers
         }
 
 
-        public IActionResult AssignRole(int UserId, string Role, string fylke)
+        public IActionResult AssignRole(int UserId, string Role, string Fylke)
         {
             var user = _context.Users
             .FirstOrDefault(i => i.Id == UserId);
@@ -392,6 +392,7 @@ namespace Karverket.Controllers
             {
 
                 user.Role = Role;
+                user.Fylke = Fylke;
 
                 _context.SaveChanges();
             }
