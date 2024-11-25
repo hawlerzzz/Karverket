@@ -56,7 +56,7 @@ namespace Karverket.Controllers
                     {
                         Name = $"Saksbehandler-{fylke}",
                         SurName = "User",
-                        Email = $"{fylke.ToLower()}@kartverket.no",
+                        Email = $"{fylke.Replace(" ", "").ToLower()}@kartverket.no",
                         Password = "1234", // Replace with hashed password in production
                         Role = "SAKSBEHANDLER",
                         Fylke = fylke
