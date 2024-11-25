@@ -49,7 +49,7 @@ For at en bruker skal kunne ta i bruk applikasjonen, må de etter registrering, 
 **Tilgangsnivå**
 
 Innen applikasjonen eksisterer det ulike tilgangsnivå for forskjellige brukere.
-De tre tilgangsnivåene er brukere, saksbehandlere og admins.
+De tre tilgangsnivåene er BRUKER, SAKSBEHANDLER og ADMIN.
 
 **Brukere**
 
@@ -65,5 +65,7 @@ Opprette rapporter, sende inn, svare rapporter, delegere rapporter.
 Opprette rapporter, sende inn, svare rapporter, delegere rapporter, tildele brukere til ulikt tilgangsnivå
 
 ## Kartinnmelding
+
+
 
 ## Innmeldingsoversikt
