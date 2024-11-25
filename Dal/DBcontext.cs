@@ -22,26 +22,6 @@ namespace Karverket.DAL
         // DbSet for å represntere Users-tabellen som inkludere user objekter i databasen
         public DbSet<User> Users { get; set; }
 
-        // Konfigurering av tilkobling til MariaDB-database
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseMySql("Server=localhost;port=3306;uid=ahmed;pwd=123;database=KARTVERKET",
-        //            new MySqlServerVersion(new Version(10, 4, 14)));  // Sett riktig MariaDB-versjon
-        //    }
-        //}
-
-        // Eventuelle tilleggskonfigurasjoner for entitetene
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-
-        //    // Konfigurerer modellen hvis nødvendig
-        //    modelBuilder.Entity<User>()
-        //        .Property(p => p.Name)
-        //        .HasMaxLength(100)
-        //        .IsRequired();
-        //}
+       
     }
 }
