@@ -52,14 +52,11 @@ passord: 1234
   * Controller: Behandler brukerens input og fungerer som et mellomledd mellom views og models. I controlleren håndteres også logikk for å dirigere forespørsler til de          riktige stedene i en applikasjon.
 
 **Entity Framework**
-* Entity framework er en ORM(Object-Relational Mapper) som gir muligheten til jobbe med databaser ved å bruke .NET-objekter, uten behov for direkte SQL-spørringer.
+* Entity framework er en Object-Relational Mapper som gir muligheten til jobbe med databaser ved å bruke .NET-objekter, uten behov for direkte SQL-spørringer.
 
 **Migrations**
 * Migrations er en handling som lagre endringer til databasen og holde den oppdatert
 * Kommandenene brukt var Add-Migration og Update-Database 
-
-**Domain Models**
-*
 
 **Database**
 * Databasen blir kjørt i din egen docker container og starter med Docker Compose
