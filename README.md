@@ -54,20 +54,16 @@ passord: 1234
 **Entity Framework**
 * Entity framework er en ORM(Object-Relational Mapper) som gir muligheten til jobbe med databaser ved å bruke .NET-objekter, uten behov for direkte SQL-spørringer.
 
-
-
-
-
-
-
-
 **Migrations**
+* Migrations er en handling som lagre endringer til databasen og holde den oppdatert
+* Kommandenene brukt var Add-Migration og Update-Database 
 
 **Domain Models**
-
-**Repository**
+*
 
 **Database**
+* Databasen blir kjørt i din egen docker container og starter med Docker Compose
+* Databasen blir nevnt og referet til i filen DBcontext
 
 ## Applikasjonens funksjonalitet og bruksområder
 
