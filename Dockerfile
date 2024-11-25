@@ -1,30 +1,36 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
-# This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Karverket/Karverket.csproj", "Karverket/"]
-RUN dotnet restore "./Karverket/Karverket.csproj"
+
+# Kopier prosjektfilen
+COPY ["/Karverket.csproj", "./"]
+
+# Gjenopprett avhengigheter
+RUN dotnet restore "./Karverket.csproj"
+
+# Kopier resten av prosjektet
 COPY . .
-WORKDIR "/src/Karverket"
-RUN dotnet build "./Karverket.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Karverket.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Installer Node.js og Tailwind CSS
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm@latest && \
+    npm install
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+# Bygg prosjektet
+RUN dotnet build "./Karverket.csproj" -c Release -o /app/build
+
+# Publiser prosjektet
+RUN dotnet publish "./Karverket.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "Karverket.dll"]

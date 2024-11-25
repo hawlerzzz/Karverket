@@ -8,6 +8,7 @@
         <div class="nav-links">
             @if (ViewBag.isInternalUser == true)
             {
+                <a asp-action="admin" class="innmeldinger-link @(ViewContext.RouteData.Values["action"].ToString() == "admin" ? "active-link" : "")">admin</a>
                 <a asp-action="Innmeldinger" class="innmeldinger-link @(ViewContext.RouteData.Values["action"].ToString() == "Innmeldinger" ? "active-link" : "")">Innmeldinger</a>
             }
             <a asp-action="Index" class="kart-link @(ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active-link" : "")">Kart</a>
