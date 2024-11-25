@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Karverket.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class LoginController : Controller
     {
         private readonly AppDbContext _context;

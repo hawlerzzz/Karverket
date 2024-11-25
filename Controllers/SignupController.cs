@@ -2,6 +2,8 @@
 
 namespace Karverket.Controllers
 {
+
+    [AutoValidateAntiforgeryToken]
     public class SignupController : Controller
     {
         //public IActionResult Index()

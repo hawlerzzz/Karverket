@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Logge inn";
 }
-
+<!--Logg inn siden, første siden en bruker vil komme til-->
 <div class="container">
     <div class="logo">
         <img src="~/css/kartverket-logo-1.jpg" alt="kartverket logo">
@@ -15,8 +15,9 @@
     </div>
 
     <div>@ViewData["error"]</div>
-
+    <!--Logg inn boks-->
     <form asp-action="login" method="post">
+        @Html.AntiForgeryToken()
         <div class="input-box">
             <input name="email" type="text" class="input-field" placeholder="E-post" autocomplete="off" required>
         </div>
@@ -36,12 +37,9 @@
             <button class="submit-btn" id="submit">Logg inn</button>
         </div>
     </form>
+    <!--registrering, videreføres til signup.cshtml-->
     <div class="sign-up-link">
         <p><a href="@Url.Action("SignUp", "Home")">Opprett ny bruker</a></p>
-    </div>
-
-    <div class="midlertidig"> <!-- midlertidlig knapp -->
-        <!-- <a class="nav-link" asp-controller="Home" asp-action="Kart">Map-midlertidigknapp</a> -->
     </div>
 
 <div class="text-center flex flex-col items-center">

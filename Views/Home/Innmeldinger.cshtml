@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Innmeldinger";
 }
-
+<!--navbar hentet fra shared view, html.partial fordi denne kun skal være synlig på valgte views-->
 @{
     Layout = "_Layout";
 }
@@ -27,6 +27,7 @@
 
         <div class="p-2 mt-4 text-lg">
             <form asp-action="Innmeldinger" method="get" class="flex flex-col justify-content-between h-full w-full">
+                @Html.AntiForgeryToken()
                 <div>
                     <label for="type" class=" text-lg">Type</label>
                     <select name="type" class="w-full border-2 p-2 rounded-md my-2">

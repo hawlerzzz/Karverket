@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "";
 }
-
+<!--Sign up siden-->
 <div class="container">
 
         <div class="logo">
@@ -14,6 +14,7 @@
         <div>@ViewData["error"]</div>
 
     <form asp-action="CreateAccount" method="post">
+        @Html.AntiForgeryToken()
 
         <div class="su-input-box">
             <input name="name" type="text" class="su-input-field" placeholder="Fornavn" autocomplete="off" required />
