@@ -31,6 +31,22 @@ passord: 1234
 
 ## Komponenter av applikasjonen
 
+**MVC**
+* MVC (Models, views, controllers) er et rammeverk for programvareutvikling. I MVC skilles det mellom data, logikk og visning.
+  * Model: Model håndterer applikasjonens data, logikk og regler.
+  * View: Views ansvarlig for å levere brukergrensesnittet som lar brukerne samhandle med applikasjonen.
+  * Controller: Behandler brukerens input og fungerer som et mellomledd mellom views og models. I controlleren håndteres også logikk for å dirigere forespørsler til de          riktige stedene i en applikasjon.
+
+**Entity Framework**
+
+**Migrations**
+
+**Domain Models**
+
+**Repository**
+
+**Database**
+
 ## Applikasjonens funksjonalitet og bruksområder
 
 Denne applikasjonen er et verktøy utviklet for Kartverket som skal hjelpe brukere i å melde inn feil i kartdata, samt for kartverket å få oversikt over eventuelle feil. Ved en eventuell feil i kart, vil en bruker markere området og lage en rapport som sendes til en saksbehandler ved kartverket. Saksbehandlerer vil sjekke opp rapporten og enten avise eller godkjenne denne, brukerer får da en tilbakemelding på sin rapport.
