@@ -3,6 +3,8 @@
     ViewData["Title"] = "MineInnmeldinger";
     var feedbackColor = ViewBag.Color ?? "yellow"; // Standard til "yellow" hvis ingen farge er angitt
     Console.WriteLine("id is: ", ViewBag.Id);
+    var caseManager = Model.Saksbehandlere.FirstOrDefault(s => s.Id == Model.innmelding.CaseManagerId);
+
     //var innmelding = Model.FirstOrDefault(i => i.Id == int.Parse(ViewBag.id));
 }
 <!--navbar hentet fra shared view, html.partial fordi denne kun skal være synlig på valgte views-->
@@ -135,7 +137,7 @@
             <div class="innmelding-header">
                 <span class="icon">&#128100;</span> <!-- Ikon for saksbehandler -->
                 <div class="header-text">
-                    <p>Thomas, saksbehandler</p>
+                       <p>@caseManager.Name, saksbehandler</p> <!-- innmelding. -->
                     @if (Model.innmelding.Answer != null)
                     {
                         <p>@Model.innmelding.Answer</p>
