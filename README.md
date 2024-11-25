@@ -24,7 +24,11 @@ For å kunne ta i bruk denne applikasjonen og kjøre den følg stegene nedenfor:
   3.
   4.
 
-    
+COMMAND: docker-compose up --build
+
+LINK: localhost:8080
+
+
 ## Komponenter av applikasjonen
 
 ## Applikasjonens funksjonalitet og bruksområder
