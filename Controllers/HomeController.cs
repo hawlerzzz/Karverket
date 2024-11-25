@@ -90,7 +90,17 @@ namespace Karverket.Controllers
         {
             _logger = logger;
             _context = context;
+
+            
+
+            // Check if there are users with the SAKSBEHANDLER role
+            
+
+
+            // Save changes if new users were added
+            _context.SaveChanges();
         }
+
 
         public IActionResult Index()
         {
@@ -161,6 +171,15 @@ namespace Karverket.Controllers
             // Redirect to the overview of changes
             return RedirectToAction("innmeldingbekreftelse");
         }
+
+
+        public IActionResult innmeldingbekreftelse()
+        {
+
+            return View();
+        }
+
+
 
         [HttpPost] /* Skal ligge i login controller n r databasen er klar */
         public IActionResult Login(string email, string password)
