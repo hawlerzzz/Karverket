@@ -197,11 +197,6 @@ namespace Karverket.Controllers
             return RedirectToAction("index");
         }
 
-        public IActionResult Endringer()
-        {
-            return View(changesList);
-        }
-
         public IActionResult Privacy()
         {
             return View();
