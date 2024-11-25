@@ -22,18 +22,6 @@ namespace Karverket.Controllers
                 string password) /* Skal ligge i signup controller n r databasen er klar */
         {
 
-            // check that the email does not exist
-            //throw new EmailExists(email);
-
-            // check that password length is correct
-            //throw new ShortPassword(password);
-
-            // check that name length is valid
-            //throw new ShortName(name);
-
-            // check that surname length is valid
-            //throw new ShortName(surname);
-
             var User1 = new User
             {
                 Name = name,
@@ -267,11 +255,6 @@ namespace Karverket.Controllers
         {
             LogUserOut();
             return RedirectToAction("index", "login");
-        }
-
-        public IActionResult ViewUsers() /* for testing only */
-        {
-            return Json(users);
         }
 
         public IActionResult Profile()
