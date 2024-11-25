@@ -1,5 +1,5 @@
 # Karverket
-! UNDER OPPDATERING !
+! OM PROSJEKTET !
 -------
 ## Applikasjonens oppsett
 Programmet bruker følgende applikasjoner for å kjøre;
@@ -12,22 +12,21 @@ Programmet bruker følgende applikasjoner for å kjøre;
 ## Hvordan applikasjonen kjøres
 For å kunne ta i bruk denne applikasjonen og kjøre den følg stegene nedenfor:
 
-## Windows
+## Windows og Mac
   1. Installere Docker.
   2. Clone koden fra dette repositoriet til din egne selvalgte lokale plassering
-  3. Åpne applikasjonen i Visual Studio.
+  3. skjør docker-compose up --build
   4. 
 
-## Mac
-  1.
-  2.
-  3.
-  4.
 
 COMMAND: docker-compose up --build
 
 LINK: localhost:8080
 
+
+### ADMIN BRUKER
+E-post: admin@kartverket.no
+passord: 1234
 
 ## Komponenter av applikasjonen
 
