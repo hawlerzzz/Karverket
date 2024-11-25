@@ -14,11 +14,10 @@ Programmet bruker følgende applikasjoner for å kjøre;
 ## Hvordan applikasjonen kjøres
 For å kunne ta i bruk denne applikasjonen og kjøre den følg stegene nedenfor:
 
-## Windows og Mac
+## Windows
   1. Installere Docker.
   2. Clone koden fra dette repositoriet til din egne selvalgte lokale plassering
-  3. skjør docker-compose up --build
-  4. 
+  3. kjør docker-compose up --build
 
 
 COMMAND: docker-compose up --build
@@ -64,8 +63,12 @@ Opprette rapporter, sende inn, svare rapporter, delegere rapporter.
 (Høyeste tilgangsnivå) 
 Opprette rapporter, sende inn, svare rapporter, delegere rapporter, tildele brukere til ulikt tilgangsnivå
 
-## Kartinnmelding
-
 
 
 ## Innmeldingsoversikt
+
+ **Kartinnmelding**
+* Brukere har muligheten til å se alle innmeldinger de har gjort, og kan se hver individuelle innmeldings beskrivelse.
+* Saksbehandlere kan se alle innmeldinger gjort av alle brukere.
+* En saksbehandler har muligheten til å sortere innmeldinger basert på fylke og type (hav eller land).
+
