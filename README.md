@@ -1,6 +1,7 @@
 # Karverket
 ! OM PROSJEKTET !
--------
+The project’s overall goal is to develop a system where you can report in changes or issues found on the map, get to see the status on the different rapports they have sent in and receive answers and feedback on their reports whether that results into change or not. The goal is for this ‘Crowd-Sourcing’ solution to be user friendly and accessible for anyone to use, no matter their age or digital competency. 
+
 ## Applikasjonens oppsett
 Programmet bruker følgende applikasjoner for å kjøre;
 
