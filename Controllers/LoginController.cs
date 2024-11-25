@@ -2,6 +2,7 @@
 
 namespace Karverket.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class LoginController : Controller
     {
         [HttpGet]

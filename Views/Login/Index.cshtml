@@ -16,6 +16,7 @@
     <div>@ViewData["error"]</div>
 
     <form class="max-w-screen-md mx-auto" asp-action="Login" asp-controller="Home" method="post">
+        @Html.AntiForgeryToken()
         <div class="input-box">
             <input name="email" type="text" class="input-field" placeholder="E-post" autocomplete="off" required>
         </div>

@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Kart";
 }
-
+<!--navbar hentet fra shared view, html.partial fordi denne kun skal være synlig på valgte views-->
 @{
     Layout = "_Layout";
 }
@@ -32,6 +32,7 @@
 
             <div class="p-2 mt-4 text-lg"> <!-- modal body -->
                 <form asp-action="RegisterAreaChange" method="post" class="flex flex-col justify-content-between h-full w-full">
+                    @Html.AntiForgeryToken()
                     <div>
                         <input type="hidden" id="geoJsonInput" name="geoJson" />
                         <input type="hidden" id="fylke" name="fylke" />
