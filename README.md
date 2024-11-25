@@ -1,9 +1,7 @@
 # Karverket
-OM PROSJEKTET 
+OM PROSJEKTET
 
-A challenge Kartverket faces today, as an organization, is making sure the map data can be updated and correct at all times. When looking at the current system used by Kartverket, it is eye-opening how difficult it is to send a report on an issue seen on a map, whether that be a wrong street name, changed roads, or a new hiking trail. The system is difficult to navigate through, leading many to either quit while trying to report in an issue found or to not even report issues in the first place which has huge ramifications on the organization’s map data and the information they can provide for its nation. This leads to a need for a solution in which reporting an issue found can be done in a user-friendly manner which both improves the map data with updates from its user, but also the inkling to report an issue in the first place knowing that it can be done and handled efficiently.
-
-The project’s overall goal is to develop a system where you can report in changes or issues found on the map, get to see the status on the different rapports they have sent in and receive answers and feedback on their reports whether that results into change or not. The goal is for this ‘Crowd-Sourcing’ solution to be user friendly and accessible for anyone to use, no matter their age or digital competency. 
+Prosjektets overordnede mål er å utvikle et system hvor brukere kan rapportere endringer eller problemer de har oppdaget på kartet, få oversikt over statusen på ulike rapporter de har sendt inn, og motta svar og tilbakemeldinger på rapportene, enten det fører til endringer eller ikke. Målet er at denne «Crowd-Sourcing»-løsningen skal være brukervennlig og tilgjengelig for alle, uavhengig av alder eller digital kompetanse.
 
 ## Applikasjonens oppsett
 Programmet bruker følgende applikasjoner for å kjøre;
