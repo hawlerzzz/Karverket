@@ -18,6 +18,8 @@ For å kunne ta i bruk denne applikasjonen og kjøre den følg stegene nedenfor:
   1. Installere Docker.
   2. Clone koden fra dette repositoriet til din egne selvalgte lokale plassering
   3. kjør docker-compose up --build
+  4. Gå inn i en nettleser, og skriv inn "localhost:8080" i søkefeltet.
+  5. Du er nå klar for å bruke applikasjonen :)
 
 
 COMMAND: docker-compose up --build
@@ -50,6 +52,14 @@ passord: 1234
   * Controller: Behandler brukerens input og fungerer som et mellomledd mellom views og models. I controlleren håndteres også logikk for å dirigere forespørsler til de          riktige stedene i en applikasjon.
 
 **Entity Framework**
+* Entity framework er en ORM(Object-Relational Mapper) som gir muligheten til jobbe med databaser ved å bruke .NET-objekter, uten behov for direkte SQL-spørringer.
+
+
+
+
+
+
+
 
 **Migrations**
 
