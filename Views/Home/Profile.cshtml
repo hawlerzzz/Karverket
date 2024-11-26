@@ -32,9 +32,9 @@
             <p>Agder</p> -->
         </div>
 
-        <a href="/Home/inbox">
-            <button class="kart-knapp">Se mine innmeldinger</button>
-            <a asp-action="Logout" class="logout-link @(ViewContext.RouteData.Values["action"].ToString() == "Logout" ? "active-link" : "")">Logg ut </a>
+        <a href="/Home/inbox"> 
+            <button class="kart-knapp">Se mine innmeldinger</button> <!-- går til inboks -->
+            <a asp-action="Logout" class="logout-link @(ViewContext.RouteData.Values["action"].ToString() == "Logout" ? "active-link" : "")">Logg ut </a> <!-- Logout -->
         </a>
     </div>
 </div>

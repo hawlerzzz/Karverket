@@ -37,7 +37,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Automatically apply migrations
+// Automatically apply migrations. samme som Update-Database i komnmando linje
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();

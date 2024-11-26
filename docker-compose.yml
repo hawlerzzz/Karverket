@@ -26,7 +26,7 @@ services:
     depends_on:
       - mariadb
     environment:
-      ConnectionStrings__DefaultConnection: "Server=mariadb;Database=KARTVERKET;User=root;Password=1234;"
+      ConnectionStrings__DefaultConnection: "Server=mariadb;Database=KARTVERKET;User=root;Password=1234;" # blir brukt først gang for å koble
     networks:
       - backend
 

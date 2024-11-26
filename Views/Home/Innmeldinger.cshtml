@@ -37,21 +37,21 @@
                     </select>
                     <label for="fylke" class=" text-lg">Fylke</label>
                     <select name="fylke" class="w-full border-2 p-2 rounded-md my-2">
-                        <option >Agder</option>
-                        <option >Akershus</option>
-                        <option >Buskerud</option>
-                        <option >Finnmark</option>
-                        <option >Innlandet</option>
-                        <option >Møre og Romsdal</option>
+                        <option>Agder</option>
+                        <option>Akershus</option>
+                        <option>Buskerud</option>
+                        <option>Finnmark</option>
+                        <option>Innlandet</option>
+                        <option>Møre og Romsdal</option>
                         <option>Nordland</option>
-                        <option >Oslo</option>
-                        <option >Rogaland</option>
-                        <option >Telemark</option>
-                        <option >Troms</option>
-                        <option >Trøndelag</option>
-                        <option >Vestfold</option>
-                        <option >Vestland</option>
-                        <option >Østfold</option>
+                        <option>Oslo</option>
+                        <option>Rogaland</option>
+                        <option>Telemark</option>
+                        <option>Troms</option>
+                        <option>Trøndelag</option>
+                        <option>Vestfold</option>
+                        <option>Vestland</option>
+                        <option>Østfold</option>
                     </select>
 
 
@@ -72,29 +72,30 @@
 
     <h1 class="inbox-overskrift">Innmeldinger</h1>
 
-   
 
 
-    
+
+
 
     <section id="innmeldingsStatus" class="justify-between">
         <h2 class="innmeldingStatus font-bold">Innmeldinger tildelt til deg</h2>
         <a class="my-4" id="filtrer">
-            <button class="kart-knapp">Filtrer</button>
+            <button class="kart-knapp">Filtrer</button> <!-- filtrer knappen som skal åpne filtrer modal (JS logikk nedenfor ) -->
         </a>
     </section>
 
 
 
-     <section id="innmeldingsStatus" class="justify-between">
+    <section id="innmeldingsStatus" class="justify-between">
         <h2 class="innmeldingStatus">Prioriterte Innmeldinger</h2>
     </section>
-
+    <!-- Går gjennom alle innmeldinger -->
     @foreach (var i in Model)
     {
-        @if (i.Status == "Pending" && i.Prioritised == true)
+        @if (i.Status == "Pending" && i.Prioritised == true) // som er pending og Prioritert (politi, ambulanse)
         {
             <a href="/Home/innmelding?id=@i.Id&color=yellow" class="message-box yellow-box">
+                <!-- Linker til Innmelding siden og gir IDen til innmeldigen -->
                 <span><span class="linkTilInnmelding">Innmelding @i.Id</span></span>
                 <span class="arrow">➔</span>
             </a>
@@ -107,12 +108,13 @@
     </section>
 
 
+    <!-- alle andre innmeldinger som ikke er prioritert -->
     @foreach (var i in Model)
     {
         @if (i.Status == "Pending" && i.Prioritised == false)
         {
             <a href="/Home/innmelding?id=@i.Id&color=yellow" class="message-box yellow-box">
-                <span><span  class="linkTilInnmelding">Innmelding @i.Id</span></span>
+                <span><span class="linkTilInnmelding">Innmelding @i.Id</span></span>
                 <span class="arrow">➔</span>
             </a>
         }
@@ -121,17 +123,19 @@
 </div>
 
 
-
-
+<!-- javascript -->
 @section Scripts {
 
     <script>
-        document.getElementById("filtrer").addEventListener("click", () => {
 
-            document.getElementById("filtrerModal").classList.remove("hidden")
+        // loggik for å åpne filtrer popup
+        document.getElementById("filtrer").addEventListener("click", () => { // hører på om det er klikk på filtrer knappen
+
+            document.getElementById("filtrerModal").classList.remove("hidden") // sletter hidden classen for å vise popupen
 
         })
 
+        // loggik for å lukke modal
         document.getElementById("modalCloseButton").addEventListener("click", () => {
 
             var filtrerModal = document.getElementById("filtrerModal")

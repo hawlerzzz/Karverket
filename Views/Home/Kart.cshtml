@@ -18,6 +18,7 @@
     
     </div>
 
+    <!-- innmelding skjema -->
     <div id="modal" class="invisible bg-black bg-opacity-50 w-screen h-screen flex justify-center items-center" style="position: absolute; z-index: 1100;"> <!-- modal -->
 
         <div class=" w-96 bg-white rounded-md opcaity-100"> <!-- modal content -->
@@ -34,6 +35,7 @@
                 <form asp-action="RegisterAreaChange" method="post" class="flex flex-col justify-content-between h-full w-full">
                     @Html.AntiForgeryToken()
                     <div>
+                        <!-- skjult fordi det er koden som generer verdien og brukeren skal ikke fille ut disse -->
                         <input type="hidden" id="geoJsonInput" name="geoJson" />
                         <input type="hidden" id="fylke" name="fylke" />
                         <label for="tyype" class=" text-lg">Type</label>
@@ -55,15 +57,15 @@
     <div class="space-y-2 cursor-pointer md-right-[25px]" style="position: absolute; bottom: 50px; right: 50px; z-index: 500;">
         <div id="position" class="p-2 bg-blue-600 rounded-md text-center">
             <img class="ml-[3px]" src="/zoom.svg" />
-        </div>
+        </div> <!-- GPS lokasjon -->
 
         <div class="bg-blue-600 rounded-md">
             <div id="plus" class="p-2 text-center">
-                <img src="/plus.svg" />
+                <img src="/plus.svg" /> <!-- Zoome inn i karten -->
             </div>
             <hr class="text-white" />
             <div id="minus" class="p-2  text-center">
-                <img src="/minus.svg" />
+                <img src="/minus.svg" /> <!-- Zoome ut -->
             </div>
         </div>
     </div>
@@ -74,16 +76,7 @@
 
 <br />
 
- <!-- <form asp-action="RegisterAreaChange" method="post">
 
-     <input type="hidden" id="geoJsonInput" name="geoJson" />
-     <div>
-         <label for="description">Kommentar:</label>
-         <textarea id="description" name="Description" class="form-control"></textarea>
-     </div>
-     <br />
-     <button type="submit" class="btn btn-primary">Submit</button>
- </form> -->
 
 @section Scripts {
     <!-- These frour lines are important to keep -->
@@ -105,7 +98,7 @@
 
     <script>
 
-        document.getElementById("position").addEventListener("click", userPosition)
+        document.getElementById("position").addEventListener("click", userPosition) // hører etter klikk. når den blir klikket så kaller den usePosition funksjonen
         document.getElementById("plus").addEventListener("click", zoomIn)
         document.getElementById("minus").addEventListener("click", zoomOut)
         document.getElementById("modalButton").addEventListener("click", openModal)
@@ -118,7 +111,7 @@
 
 
 
-        function openModal() {
+        function openModal() { // åoner popup 
 
             // console.log("open modal was clicked!")'
             if (geoJsonInput.value) {
@@ -164,19 +157,19 @@
         }
 
 
-        function getFylke() {
+        function getFylke() { // funksjon som generer hvilkem fylke brukeren har klikket. 
 
 
             jso = document.getElementById('geoJsonInput').value 
             console.log("jso is: ", jso)
             jso = JSON.parse(jso)
             console.log(jso)
-            if (jso.geometry.type == "LineString") {
+            if (jso.geometry.type == "LineString") { // hvis det er flere punkter (linje).  // hvis linjen går gjennom flere fylker er det bare først filken som blir valgt
                 ost = jso.geometry.coordinates[0][0]
                 nord = jso.geometry.coordinates[0][1]
                 console.log("nord is: ", nord)
             }
-            else {
+            else { // hvis det er punkt
                 ost = jso.geometry.coordinates[0]
                 nord = jso.geometry.coordinates[1]
                 console.log("ost", ost)
@@ -189,7 +182,7 @@
            .then ((data) => {
                console.log(data)
                
-               document.getElementById("fylke").value = data.fylkesnavn
+               document.getElementById("fylke").value = data.fylkesnavn // endrer fylke input 
 
                
            })
@@ -230,9 +223,9 @@
             document.getElementById('geoJsonInput').value = geoJsonString;
             document.getElementById("modalButton").classList.remove("invisible");
         });
-
-        var gj = @Html.Raw(ViewBag.Geojson)
-        console.log("Hello, geoJSON is:", gj);
+         
+        var gj = @Html.Raw(ViewBag.Geojson) // brukt i SE I KART. geojson fra Kart controlleren(indeks) blir gitt til Leaflet sånn at punktet vises i kartet. 
+        console.log("Hello, geoJSON is:", gj); // brukte som et test
 
         L.geoJSON(gj).addTo(map);
 

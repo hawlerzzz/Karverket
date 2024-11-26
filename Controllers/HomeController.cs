@@ -8,19 +8,19 @@ namespace Karverket.Controllers
     [AutoValidateAntiforgeryToken]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly AppDbContext _context;
-        private static List<AreaChange> changesList = new List<AreaChange>();
-        private static List<PositionModel> positions = new List<PositionModel>();
-        private static List<User> users = new List<User>();
-        private static User? currentUser;
+        private readonly ILogger<HomeController> _logger; 
+        private readonly AppDbContext _context; // referer til database kontekst
+        private static List<AreaChange> changesList = new List<AreaChange>(); // for testing
+        private static List<PositionModel> positions = new List<PositionModel>(); // for testing vi bruker ikke
+        private static List<User> users = new List<User>(); // for testing
+        private static User? currentUser; 
         private static bool isPrioritisedUser = false;
         private static bool isInternalUser = false;
 
         // private method that creates user 
         private User
             CreateUser(string name, string surname, string email,
-                string password) /* Skal ligge i signup controller n r databasen er klar */
+                string password) // lager bruker i databasen
         {
 
             var User1 = new User
@@ -35,8 +35,9 @@ namespace Karverket.Controllers
             return User1;
         }
 
-        private User LogUserIn(string email, string password) /* Skal ligge i login controller n r databasen er klar */
+        private User LogUserIn(string email, string password) // logger inn brukeren
         {
+
             // Get from db a user with this email
             User? user = _context.Users.SingleOrDefault(u => u.Email == email);
 
@@ -52,7 +53,7 @@ namespace Karverket.Controllers
                 Console.WriteLine($"passwords don't match  {password}");
                 throw new WrongPassword(password);
             }
-
+            // sjekker om brukeren er fra nødetater og prioriterer
             if (user.Role == "SAKSBEHANDLER" || user.Role == "ADMIN")
             {
                 isInternalUser = true;
@@ -94,16 +95,12 @@ namespace Karverket.Controllers
 
             
 
-            // Check if there are users with the SAKSBEHANDLER role
             
-
-
-            // Save changes if new users were added
             _context.SaveChanges();
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index() // kart siden
         {
 
             if (currentUser == null)
@@ -131,7 +128,7 @@ namespace Karverket.Controllers
         }
 
 
-        public IActionResult SeIKart(int Id)
+        public IActionResult SeIKart(int Id) 
         {
 
 
@@ -183,7 +180,7 @@ namespace Karverket.Controllers
 
 
         [HttpPost] /* Skal ligge i login controller n r databasen er klar */
-        public IActionResult Login(string email, string password)
+        public IActionResult Login(string email, string password) // Gammel vi bruker ikke. NY: Login Controller
         {
             try
             {
@@ -206,7 +203,7 @@ namespace Karverket.Controllers
         [HttpPost]
         public IActionResult
             CreateAccount(string name, string surname, string email,
-                string password) // makes a a new user. skal ligge i signup controller n r DB er klar
+                string password) // makes a a new user.
         {
             try
             {
@@ -216,7 +213,7 @@ namespace Karverket.Controllers
             {
                 return RedirectToAction("index", "signup", new { error = "Epost er allerede brukt!" });
             }
-
+            // logge inn etter signup
              LogUserIn(email, password);
 
             return RedirectToAction("index");
@@ -235,7 +232,7 @@ namespace Karverket.Controllers
         }
 
         [HttpPost]
-        public IActionResult CorrectMap(PositionModel model)
+        public IActionResult CorrectMap(PositionModel model) // vi bruker ikke
         {
             if (ModelState.IsValid)
             {
@@ -248,7 +245,7 @@ namespace Karverket.Controllers
         }
 
         [HttpGet]
-        public IActionResult CorrectionOverview()
+        public IActionResult CorrectionOverview() // vi bruker ikke
         {
             return View(positions);
         }
@@ -256,7 +253,7 @@ namespace Karverket.Controllers
         public IActionResult admin()
         {
             
-            if (currentUser == null || currentUser.Role != "ADMIN")
+            if (currentUser == null || currentUser.Role != "ADMIN") // sender tilbake til login hvis bruker er ikke ADMIN
             {
                 return RedirectToAction("index", "Login");
             }
@@ -266,7 +263,7 @@ namespace Karverket.Controllers
         }
 
 
-        public IActionResult Logout()
+        public IActionResult Logout() // logge ut
         {
             LogUserOut();
             return RedirectToAction("index", "login");
@@ -297,7 +294,7 @@ namespace Karverket.Controllers
             return View(innmeldinger);
         }
 
-        public IActionResult Innmeldinger(string? type, string? fylke)
+        public IActionResult Innmeldinger(string? type, string? fylke) // type og fylke blir brukt hvis brukeren klikker filtrer.
         {
             // Redirect if not an internal user
             if (!isInternalUser)
@@ -321,7 +318,7 @@ namespace Karverket.Controllers
             return View(innmeldinger);
         }
 
-        public IActionResult Innmelding(string id, string color)
+        public IActionResult Innmelding(string id, string color) // innmelding id og farge
         {
             // Hent innmelding basert på id
             var innmelding = _context.Innmeldinger1.FirstOrDefault(i => i.Id == int.Parse(id));
@@ -353,9 +350,9 @@ namespace Karverket.Controllers
         public IActionResult AvvisInnmelding(int id, string melding)
         {
             var innmelding = _context.Innmeldinger1
-            .FirstOrDefault(i => i.Id == id);
+            .FirstOrDefault(i => i.Id == id); // innmelding med samme ID
 
-            if (innmelding != null)
+            if (innmelding != null) // hvis det er innmelding med denne ID
             {
 
                 innmelding.Status = "Declined";
@@ -371,11 +368,11 @@ namespace Karverket.Controllers
             var innmelding = _context.Innmeldinger1
             .FirstOrDefault(i => i.Id == id);
 
-            if (innmelding != null)
+            if (innmelding != null) // hvis det er innmelding med samme ID
             {
 
-                innmelding.Status = "Accepted";
-                innmelding.Answer = melding;
+                innmelding.Status = "Accepted"; // akspeter
+                innmelding.Answer = melding; // oppdater svar
 
                 _context.SaveChanges();
             }
@@ -390,7 +387,7 @@ namespace Karverket.Controllers
             if (innmelding != null)
             {
 
-                innmelding.CaseManagerId = saksbehandler;
+                innmelding.CaseManagerId = saksbehandler; // endre saksbehandler ID
 
                 _context.SaveChanges();
             }
@@ -403,15 +400,15 @@ namespace Karverket.Controllers
             var user = _context.Users
             .FirstOrDefault(i => i.Id == UserId);
 
-            if (user != null)
+            if (user != null) // hvis det er en bruker
             {
 
-                user.Role = Role;
-                user.Fylke = Fylke;
+                user.Role = Role; // endre Role
+                user.Fylke = Fylke; // endre Fylke 
 
                 _context.SaveChanges();
             }
-            return RedirectToAction("admin");
+            return RedirectToAction("admin"); // returnerer til Admin
         }
     }
 

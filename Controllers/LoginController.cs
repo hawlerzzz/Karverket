@@ -17,14 +17,15 @@ namespace Karverket.Controllers
             _logger = logger;
 
             // Check if there is a user with the ADMIN role
+            // Initialiserer med TEST admin hvis det er ingen admin
             if (!_context.Users.Any(u => u.Role == "ADMIN"))
             {
-                var adminUser = new User
+                var adminUser = new User 
                 {
                     Name = "Admin",
                     SurName = "User",
                     Email = "admin@kartverket.no",
-                    Password = "1234", // Replace with hashed password in production
+                    Password = "1234", 
                     Role = "ADMIN",
                     Fylke = "Agder"
                 };
@@ -33,6 +34,8 @@ namespace Karverket.Controllers
                 _logger.LogInformation("Created default admin user: admin@kartverket.no");
             }
 
+
+            // INITIALISERER TEST Saksbehandler
             if (!_context.Users.Any(u => u.Role == "SAKSBEHANDLER"))
             {
                 var fylker = new List<string>
@@ -50,14 +53,14 @@ namespace Karverket.Controllers
                     "Troms og Finnmark"
                 };
 
-                foreach (var fylke in fylker)
+                foreach (var fylke in fylker) // lag en bruker for hver fylke
                 {
                     var saksbehandler = new User
                     {
                         Name = $"Saksbehandler-{fylke}",
                         SurName = "User",
                         Email = $"{fylke.Replace(" ", "").ToLower()}@kartverket.no",
-                        Password = "1234", // Replace with hashed password in production
+                        Password = "1234", 
                         Role = "SAKSBEHANDLER",
                         Fylke = fylke
                     };
